@@ -21,9 +21,14 @@ export class TasksStoreService {
   constructor(private tasksService: TasksService) { }
 
   getAllTasks(){
-    this.tasksService.getPost().subscribe(tasks => {
+    this.tasksService.getAllTask().subscribe(tasks => {
       this._tasks.next(tasks)
       console.log(tasks)
+    })
+  }
+  createTask(data:any){
+    this.tasksService.createTask(data).subscribe(res=> {
+      console.log(res)
     })
   }
 
