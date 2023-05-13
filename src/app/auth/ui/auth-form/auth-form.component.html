@@ -1,0 +1,7 @@
+<div auth-form-wrapper>
+  <form [formGroup]="authForm">
+    <ion-input title="email" name="email" type="email" formControlName="email"></ion-input>
+    <ion-input title="password" name="password" type="password" formControlName="password"></ion-input>
+    <ion-button (click)="onSubmitAuthForm()">{{buttonTitle}}</ion-button>
+  </form>
+</div>

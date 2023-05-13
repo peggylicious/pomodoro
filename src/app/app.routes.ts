@@ -18,4 +18,12 @@ export const routes: Route[] = [
       taskxx: TasksResolver
     }
   },
+  {
+    path: 'register',
+    loadComponent: () => import('./auth/feature/register/register.page').then( m => m.RegisterPage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./auth/feature/login/login.page').then( m => m.LoginPage)
+  },
 ];

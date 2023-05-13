@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormBuilder, FormsModule, FormGroup, ReactiveFormsModule, FormControl, FormGroupDirective } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TasksService } from '../../data-access/tasks.service';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
@@ -10,7 +10,7 @@ import { TasksStoreService } from '../../data-access/tasks-store.service';
   templateUrl: './task-add.page.html',
   styleUrls: ['./task-add.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule]
 })
 export class TaskAddPage implements OnInit {
   taskForm = this.fb.group({
