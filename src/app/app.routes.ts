@@ -1,5 +1,6 @@
 import { Route } from'@angular/router';
 import { TasksResolver } from './tasks/utils/tasks.resolver';
+import { AuthGuard } from './auth/utils/auth.guard';
 
 export const routes: Route[] = [
  {
@@ -14,6 +15,7 @@ export const routes: Route[] = [
   {
     path: 'tasks',
     loadChildren: () => import('./tasks/feature/task-shell/task-shell.routes').then( m => m.taskRoutes),
+    canActivate: [AuthGuard],
     resolve: {
       taskxx: TasksResolver
     }
