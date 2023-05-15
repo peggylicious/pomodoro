@@ -10,4 +10,17 @@
       <ion-title size="large">task-list</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div>
+    <ion-button (click)="open()">Add task</ion-button>
+    <ion-card *ngFor="let task of (taskResolved | async);">
+      <ion-card-header>
+        <ion-card-title>{{task.title}}</ion-card-title>
+        <ion-card-subtitle>{{ task.pomodoros }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ task.description }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

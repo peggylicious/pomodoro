@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TasksService {
-  baseUrl: string = "http://localhost:3000/"
+  baseUrl: string = "http://localhost:3000/task/"
   constructor( private http: HttpClient) { }
 
   getAllTask(){
-    return this.http.get(`${this.baseUrl}tasks`)
+    return this.http.get(`${this.baseUrl}all`)
   }
 
   createTask(data:any){
-    return this.http.post(`${this.baseUrl}tasks`, data)
+    return this.http.post(`${this.baseUrl}create`, data)
   }
   // getPostLocalStorage(){
 

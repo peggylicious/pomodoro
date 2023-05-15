@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { TasksStoreService } from '../../data-access/tasks-store.service';
 
 @Component({
   selector: 'app-task-container',
@@ -12,9 +13,10 @@ import { IonicModule } from '@ionic/angular';
 })
 export class TaskContainerPage implements OnInit {
 
-  constructor() { }
+  constructor(private tasksStoreService: TasksStoreService) { }
 
   ngOnInit() {
+    this.tasksStoreService.getAllTasks()
   }
 
 }

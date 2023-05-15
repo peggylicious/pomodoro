@@ -4,25 +4,29 @@ import { FormBuilder, FormsModule, FormGroup, ReactiveFormsModule, FormControl, 
 import { IonicModule } from '@ionic/angular';
 import { TasksService } from '../../data-access/tasks.service';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
+import { TaskFormComponent } from '../../ui/task-form/task-form.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.page.html',
   styleUrls: ['./task-add.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule, TaskFormComponent]
 })
 export class TaskAddPage implements OnInit {
-  taskForm = this.fb.group({
-    title: [''],
-    description: ['']
-  })
-  constructor( private fb: FormBuilder, private tasksStoreService: TasksStoreService) { }
+  formType: string = 'Create Task';
+
+  constructor( private fb: FormBuilder, private tasksStoreService: TasksStoreService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // this.route.data.subscribe((res) => {
+    //   console.log(res)
+    //   console.log(res['taskxx'])
+    // })
   }
-  submitTasks(){
-    console.log(this.taskForm.value)
-    this.tasksStoreService.createTask(this.taskForm.value)
+  submitTasks(formData:any){
+    console.log(formData)
+    this.tasksStoreService.createTask(formData.value)
   }
 }

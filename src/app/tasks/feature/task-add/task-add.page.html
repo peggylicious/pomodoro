@@ -1,22 +1,4 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>task-add</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">task-add</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content> -->
 <div>
   <h1>Add Task</h1>
-<form [formGroup]="taskForm" (ngSubmit)="submitTasks()">
-
-  <ion-input id="first-name" type="text" fill="outline" label="Title:" labelPlacement="stacked"formControlName="title"></ion-input>
-  <ion-input id="last-name" type="text" fill="outline" label="Description:" labelPlacement="stacked"formControlName="description"></ion-input>
-  <ion-button type="submit" color="primary" [disabled]="!taskForm.valid">Submit</ion-button>
-</form>
+  <app-task-form [formType]="formType" (onSubmitTask)="submitTasks($event)"></app-task-form>
 </div>

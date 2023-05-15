@@ -12,8 +12,8 @@ import { TasksStoreService } from '../data-access/tasks-store.service';
 })
 export class TasksResolver implements Resolve<boolean> {
   constructor(private tasksStoreService: TasksStoreService){}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    this.tasksStoreService.getAllTasks()
-    return this.tasksStoreService.$tasks
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+    // Cache storage should be used here with a condiction. Checking if cache is populated with tassssssssks
+    // return this.tasksStoreService.populateTasks()
   }
 }

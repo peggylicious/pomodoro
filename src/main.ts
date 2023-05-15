@@ -11,11 +11,15 @@ import { AppComponent } from './app/app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from'@angular/common/http'
 import { FormGroupDirective } from '@angular/forms';
 import { LoadingInterceptor } from './app/shared/utils/loading.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
 
 if (environment.production) {
   enableProdMode();
 }
-
+export function tokenGetter(){
+  console.log("Token getter ", localStorage.getItem('access_token'))
+ return localStorage.getItem('access_token')
+}
 // platformBrowserDynamic().bootstrapModule(AppModule)
 //   .catch(err => console.log(err));
 bootstrapApplication(AppComponent, {
@@ -25,6 +29,14 @@ bootstrapApplication(AppComponent, {
  importProvidersFrom(IonicModule.forRoot({})),
  importProvidersFrom(HttpClientModule),
  importProvidersFrom(FormGroupDirective),
+ importProvidersFrom(JwtModule.forRoot({
+  config: {
+    tokenGetter: tokenGetter,
+    allowedDomains: ["localhost:3000", "localhost:8100"],
+    disallowedRoutes: ["http://example.com/examplebadroute/"],
+  },
+})),
  provideRouter(routes),
+
  ],
  });
