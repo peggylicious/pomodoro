@@ -14,6 +14,10 @@ export class TasksService {
   createTask(data:any){
     return this.http.post(`${this.baseUrl}create`, data)
   }
+  updateTasks(taskId:any, data: any){
+    console.log('Updating...')
+    return this.http.put(`${this.baseUrl}update/${taskId}`, data)
+  }
   // getPostLocalStorage(){
 
   // }

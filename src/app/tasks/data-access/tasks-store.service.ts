@@ -10,6 +10,8 @@ export class TasksStoreService {
   // tasks$ = new Subject()
   private readonly _tasks = new BehaviorSubject<any>('')
   readonly $tasks = this._tasks.asObservable()
+  onShowPlayBtn: BehaviorSubject<any> = new BehaviorSubject({val: true});
+  onShowPauseBtn: BehaviorSubject<any> = new BehaviorSubject({});
 
   get tasks() : any {
     return  this._tasks.getValue()
@@ -38,5 +40,14 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-
+  updateTasks(taskId:any, data: {}){
+    console.log('taskId ' + taskId)
+    return this.tasksService.updateTasks(taskId, data)
+  }
+  showPlayBtn(val:boolean, index: any){
+    this.onShowPlayBtn.next({val, index})
+  }
+  showPauseBtn(val:boolean, index:any){
+    this.onShowPauseBtn.next({val, index})
+  }
 }
