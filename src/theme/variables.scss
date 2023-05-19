@@ -74,6 +74,41 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+
+
+
+
+
+
+      /*************************/
+      /**      COlors        **/
+      /*************************/
+      --main-black: #212121;
+      --main-colored: #FF575C;
+      --main-bg-white: #fff;
+      --main-bg-dark: #181A20;
+      --icon-hover-light: #FFEEEF;
+      --icon-hover-dark: #35383F;
+
+      /*************************/
+      /**      Button Colors  **/
+      /*************************/
+      --success: linear-gradient(286.17deg, #1AB65C 0%, #39E180 100%);
+      --danger: linear-gradient(286.17deg, #FF575C 0%, #FF8285 100%);
+
+      /*************************/
+      /**      Borders        **/
+      /*************************/
+      --card-radius: 20px
+      --btn-radius: 100px;
+
+      /*************************/
+      /**      Shadows        **/
+      /*************************/
+      --card-shadow-light: 0px 4px 60px rgba(4, 6, 15, 0.05);
+      --card-shadow-dark: 0px 4px 60px rgba(4, 6, 15, 0.05);;
+      --btn-shadow: 4px 8px 24px rgba(255, 87, 92, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
