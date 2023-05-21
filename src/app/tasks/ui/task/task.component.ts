@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
 // import { EventEmitter } from 'stream';
 
 @Component({
@@ -10,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule, RouterModule]
 })
 export class TaskComponent  implements OnInit {
   @Output() onPlay: EventEmitter<any> = new EventEmitter();

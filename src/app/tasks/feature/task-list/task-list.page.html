@@ -17,7 +17,7 @@
     <div>
       <!-- <h1>{{ minutes }}: {{ seconds }}</h1> -->
       <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1>
-      <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player>
+      <!-- <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player> -->
     </div>
     <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
   </div>

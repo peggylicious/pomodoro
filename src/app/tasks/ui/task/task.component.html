@@ -1,13 +1,20 @@
 <ion-card>
-  <ion-card-header>
+  <!-- <ion-card-header>
     <ion-card-title>{{task?.title}}</ion-card-title>
     <ion-card-subtitle>{{ task.pomodoros }}</ion-card-subtitle>
-  </ion-card-header>
+  </ion-card-header> -->
 
   <ion-card-content>
-    {{ task.description }}
-    <ion-button color="success" *ngIf="((showPlay | async).val && (((showPlay | async).index !== selectedIndex))) || (!(showPlay | async).val && (((showPlay | async).index !== selectedIndex)))" (click)="playPomodoro(task, index)">Play</ion-button>
+    <p class="task-discriptive-img"></p>
+    <div class="about-task">
+      <h3>{{task?.title}}</h3>
+      <p>{{ task?.description }}</p>
+      <p>{{ task?.pomodoros }}</p>
+    </div>
+    <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer']">Play</ion-button>
+
+    <!-- <ion-button color="success" *ngIf="((showPlay | async).val && (((showPlay | async).index !== selectedIndex))) || (!(showPlay | async).val && (((showPlay | async).index !== selectedIndex)))" (click)="playPomodoro(task, index)">Play</ion-button>
     <ion-button color="success" *ngIf="(showPlay | async).val && (showPlay | async).index === selectedIndex" (click)="playPomodoro(task, index)">Play</ion-button>
-    <ion-button color="warning" *ngIf="(showPause | async).val && ((showPlay | async).index === selectedIndex)" (click)="pausePomodoro(task, index)">Pause</ion-button>
+    <ion-button color="warning" *ngIf="(showPause | async).val && ((showPlay | async).index === selectedIndex)" (click)="pausePomodoro(task, index)">Pause</ion-button> -->
   </ion-card-content>
 </ion-card>

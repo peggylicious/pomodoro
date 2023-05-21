@@ -20,7 +20,8 @@ export class TaskFormComponent  implements OnInit {
     title: [''],
     description: [''],
     status: [''],
-    pomodoros: [0]
+    pomodoros: [0],
+    isComplete: false
   })
 
   constructor(private fb: FormBuilder) { }

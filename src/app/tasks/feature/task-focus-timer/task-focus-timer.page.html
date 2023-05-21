@@ -1,0 +1,35 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>task-focus-timer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">task-focus-timer</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content> -->
+<div class="focus-timer-container">
+  <ion-card>
+    <ion-card-content>
+      <p class="task-discriptive-img"></p>
+      <div class="about-task">
+        <h3>{{selectedTask?.[0]?.title}}</h3>
+        <p>{{ selectedTask?.[0]?.description }}</p>
+        <p>{{ selectedTask?.[0]?.pomodoros }}</p>
+      </div>
+      <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer']"><ion-icon name="play" color="#fff"></ion-icon></ion-button> -->
+
+      <!-- <ion-button color="success" *ngIf="((showPlay | async).val && (((showPlay | async).index !== selectedIndex))) || (!(showPlay | async).val && (((showPlay | async).index !== selectedIndex)))" (click)="playPomodoro(task, index)">Play</ion-button>
+      <ion-button color="success" *ngIf="(showPlay | async).val && (showPlay | async).index === selectedIndex" (click)="playPomodoro(task, index)">Play</ion-button>
+      <ion-button color="warning" *ngIf="(showPause | async).val && ((showPlay | async).index === selectedIndex)" (click)="pausePomodoro(task, index)">Pause</ion-button> -->
+    </ion-card-content>
+  </ion-card>
+  <div class="time-square">
+    <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1>
+    <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player>
+  </div>
+
+</div>

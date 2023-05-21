@@ -11,6 +11,10 @@ export const taskRoutes: Route[] = [
 
     },
     {
+      path: ':id/task-timer',
+      loadComponent: () => import('../task-focus-timer/task-focus-timer.page').then( m => m.TaskFocusTimerPage)
+    },
+    {
       path:'add',
       loadComponent: () => import('../task-add/task-add.page').then((m) =>m.TaskAddPage),
 

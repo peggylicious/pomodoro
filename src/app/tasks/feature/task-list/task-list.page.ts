@@ -1,4 +1,4 @@
-import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -15,7 +15,7 @@ import { TaskComponent } from '../../ui/task/task.component';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, PlayerComponent, TaskComponent]
 })
-export class TaskListPage implements OnInit {
+export class TaskListPage implements OnInit, OnDestroy {
   taskResolved:any = this.tasksStoreService.$tasks
   timeRemaining$!:Observable<number>;
   timeR: Subject<any> = new Subject();
@@ -39,34 +39,35 @@ export class TaskListPage implements OnInit {
   }
 
   playPomodoro(playTime:number, task?:any){
-    console.log(task)
-    this.selectedTask = task.task;
-    this.selectedIndex = task.index
+    // console.log(task)
+    // this.selectedTask = task.task;
+    // this.selectedIndex = task.index
     // this.isPlay = true
-    console.log("Play ", this.pauseTime)
-    this.timeRemaining$ = timer(0, 1000).pipe( // 5mins = 300, 25mins = 15540
-    map(n => {
-      console.log(n)
-      if((playTime - n) === 1){
-        this.pauseTime = 0;
-        this.timeR.next('completed')
-      }
-      this.pauseTime = playTime - n-1;
-      return (playTime - n) * 1000
-    }),
-    takeUntil(this.timeR),
-  );
+    // console.log("Play ", this.pauseTime)
+    // this.timeRemaining$ = timer(0, 1000).pipe( // 5mins = 300, 25mins = 15540
+    // map(n => {
+    //   console.log(n)
+    //   if((playTime - n) === 1){
+    //     this.pauseTime = 0;
+    //     this.timeR.next('completed')
+    //   }
+    //   this.pauseTime = playTime - n-1;
+    //   return (playTime - n) * 1000
+    // }),
+    // takeUntil(this.timeR),
+  // );
   }
   pausePomodoro(){
     console.log("Pause,", this.pauseTime)
     this.timeR.next(this.pauseTime)
     // this.isPlay = true
-    this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime}).subscribe(res=>{
-      console.log(res)
-    this.tasksStoreService.showPlayBtn(true, this.selectedIndex)
-    // this.isPlay = true
-      // console.log(this.tasksStoreService.showPlayBtn.getValue())
-    })
+    this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime, pomodoros: this.selectedTask.pomodoros})
+    // .subscribe(res=>{
+    //   console.log(res)
+    // this.tasksStoreService.showPlayBtn(true, this.selectedIndex)
+    // // this.isPlay = true
+    //   // console.log(this.tasksStoreService.showPlayBtn.getValue())
+    // })
     console.log("index: ", this.selectedTask.index,)
 
   }
@@ -76,5 +77,7 @@ export class TaskListPage implements OnInit {
     this.timeR.next(0)
     this.pauseTime = 300
   }
-
+  ngOnDestroy(): void {
+    this.timeR.next(this.pauseTime)
+  }
 }
