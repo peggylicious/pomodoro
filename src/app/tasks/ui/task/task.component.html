@@ -11,7 +11,8 @@
       <p>{{ task?.description }}</p>
       <p>{{ task?.pomodoros }}</p>
     </div>
-    <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer']">Play</ion-button>
+    <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer',]" [state]="{reload: false}">Play</ion-button> -->
+    <ion-button class="play-btn" (click)="playOnInit()">Play</ion-button>
 
     <!-- <ion-button color="success" *ngIf="((showPlay | async).val && (((showPlay | async).index !== selectedIndex))) || (!(showPlay | async).val && (((showPlay | async).index !== selectedIndex)))" (click)="playPomodoro(task, index)">Play</ion-button>
     <ion-button color="success" *ngIf="(showPlay | async).val && (showPlay | async).index === selectedIndex" (click)="playPomodoro(task, index)">Play</ion-button>

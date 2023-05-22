@@ -2,7 +2,7 @@ import { Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit } from '@angular
 import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Event, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { PlayerComponent } from '../../ui/player/player.component';
 import { Observable, Subject, Subscription, interval, map, of, takeUntil, takeWhile, timer } from 'rxjs';
@@ -24,9 +24,32 @@ export class TaskListPage implements OnInit, OnDestroy {
   pauseTime: number = 300; // Start time
   selectedTask:any;
   selectedIndex = undefined;
+  currentRoute: any;
   // hidePlayButton: boolean = false;
   // isPlay: boolean = true;
-  constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string) { }
+  constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string) {
+    // this.router.events.subscribe((event: Event) => {
+    //   if (event instanceof NavigationStart) {
+    //       // Show progress spinner or progress bar
+    //       console.log('Route change detected', event);
+    //       history.state
+    //       this.tasksStoreService.playPomodoro(true)
+    //   }
+
+    //   if (event instanceof NavigationEnd) {
+    //       // Hide progress spinner or progress bar
+    //       this.currentRoute = event.url;
+    //       console.log(event);
+    //   }
+
+    //   if (event instanceof NavigationError) {
+    //        // Hide progress spinner or progress bar
+
+    //       // Present error to user
+    //       console.log(event.error);
+    //   }
+    // });
+  }
   ngOnInit() {
     this.route.data.subscribe((res) => {
       console.log(res)

@@ -12,8 +12,11 @@ export class TasksStoreService {
   readonly $tasks = this._tasks.asObservable()
   // readonly upcomingEvents$ = this.events$.pipe(map(res=> res.filter(event => new Date(event.time).getTime()  > new Date().getTime())))
 
-  onShowPlayBtn: BehaviorSubject<any> = new BehaviorSubject({val: true});
+  // onShowPlayBtn: BehaviorSubject<any> = new BehaviorSubject({val: true});
+  onShowPlayBtn: BehaviorSubject<boolean> = new BehaviorSubject(true);
   onShowPauseBtn: BehaviorSubject<any> = new BehaviorSubject({});
+  onPlayPomodoroOnNav: Subject<boolean> = new Subject();
+  playOnInit_: BehaviorSubject<boolean> = new BehaviorSubject(false)
   selectedTask: any;
   selectedIndex: any;
   get tasks() : any {
@@ -82,10 +85,18 @@ export class TasksStoreService {
 
     })
   }
-  showPlayBtn(val:boolean, index: any){
-    this.onShowPlayBtn.next({val, index})
+  // showPlayBtn(val:boolean, index: any){
+  showPlayBtn(val:boolean){
+    // this.onShowPlayBtn.next({val, index})
+    this.onShowPlayBtn.next(val)
   }
   showPauseBtn(val:boolean, index:any){
     this.onShowPauseBtn.next({val, index})
+  }
+  playPomodoro(val:boolean){
+    this.onPlayPomodoroOnNav.next(val)
+  }
+  playOnInit(val:boolean){
+    return this.playOnInit_.next(val)
   }
 }

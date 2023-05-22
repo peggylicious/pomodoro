@@ -1,7 +1,7 @@
 <div>
   <h2>{{ selectedTask?.title }}</h2>
-  <ion-button (click)="play()"><ion-icon name="play" color="#fff"></ion-icon></ion-button>
-  <ion-button (click)="pause()"> <ion-icon name="pause"></ion-icon> </ion-button>
-  <ion-button (click)="stop()"><ion-icon name="stop"></ion-icon></ion-button>
-  <ion-button (click)="stop()"><ion-icon name="refresh"></ion-icon></ion-button>
+  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="stop()"><ion-icon name="refresh"></ion-icon></ion-button>
+  <ion-button *ngIf="showPlayBtn$ | async" (click)="play()"><ion-icon name="play" color="#fff"></ion-icon></ion-button>
+  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="pause()"> <ion-icon name="pause"></ion-icon> </ion-button>
+  <ion-button *ngIf="(showPlayBtn$ | async) === false"  (click)="stop()"><ion-icon name="stop"></ion-icon></ion-button>
 </div>
