@@ -84,7 +84,7 @@ export class TaskListPage implements OnInit, OnDestroy {
     console.log("Pause,", this.pauseTime)
     this.timeR.next(this.pauseTime)
     // this.isPlay = true
-    this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime, pomodoros: this.selectedTask.pomodoros})
+    this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime, totalCycles: this.selectedTask.totalCycles, pomodoros: this.selectedTask.pomodoros, isComplete: this.selectedTask.pomodoro})
     // .subscribe(res=>{
     //   console.log(res)
     // this.tasksStoreService.showPlayBtn(true, this.selectedIndex)
@@ -99,6 +99,10 @@ export class TaskListPage implements OnInit, OnDestroy {
     this.timeRemaining$ = of(0)
     this.timeR.next(0)
     this.pauseTime = 300
+  }
+  deleteTask(){
+    this.tasksStoreService.deleteAllTasks()
+
   }
   ngOnDestroy(): void {
     this.timeR.next(this.pauseTime)

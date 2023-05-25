@@ -18,8 +18,10 @@
       <div class="about-task">
         <h3>{{selectedTask?.[0]?.title}}</h3>
         <p>{{ selectedTask?.[0]?.description }}</p>
-        <p>{{ selectedTask?.[0]?.pomodoros }}</p>
-        <p>{{ selectedTask?.[0]?.timeLeft }}</p>
+        <p>{{ selectedTask?.[0]?.totalCycles }}</p>
+        <!-- <p>{{ selectedTask?.[0]?.timeLeft }}</p> -->
+        <ion-icon name="compass-outline" *ngFor="let item of totalPomodoros(selectedTask?.[0]?.totalCycles / 4)"></ion-icon>
+
       </div>
       <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer']"><ion-icon name="play" color="#fff"></ion-icon></ion-button> -->
 
@@ -33,9 +35,49 @@
     <!-- {{ selectedTask?.[0]?.timeLeft }} -->
     <!-- <h1 *ngIf="selectedTask?.[0]?.timeLeft === 0">{{ selectedTask?.[0]?.timeLeft | date: 'mm:ss' }}</h1>
     <h1 *ngIf="selectedTask?.[0]?.timeLeft > 0">{{ (timeRemaining$ | async) | date: 'mm:ss' }}</h1> -->
-    <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }}</h1>
 
+
+    <div class="progress-wrapper" *ngIf="!selectedTask?.[0]?.isComplete">
+      <div class="progress-outer">
+        <div class="progress-inner">
+          <div class="progress-content">
+            <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }}</h1>
+            <p>{{((selectedTask?.[0]?.totalCycles % 4))}} of 4 sessions</p>
+            <!-- <p>{{((selectedTask?.[0]?.pomodoros % 4))}} of 4 sessions</p> -->
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="260px" height="260px">
+        <defs>
+          <linearGradient id="GradientColor">
+            <stop offset="0%" stop-color="#DA22FF"></stop>
+            <stop offset="100%" stop-color="#9733EE"></stop>
+          </linearGradient>
+        </defs>
+        <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * ((selectedTask?.[0]?.totalCycles % 4)/ 4))}" #progressBar></circle>
+      </svg>
+    </div>
+    <div class="progress-wrapper" *ngIf="selectedTask?.[0]?.isComplete">
+      <div class="progress-outer">
+        <div class="progress-inner">
+          <div class="progress-content">
+            <h1>{{ (0) | date: 'mm:ss' }}</h1>
+            <p>4 of 4 sessions</p>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="260px" height="260px">
+        <defs>
+          <linearGradient id="GradientColor">
+            <stop offset="0%" stop-color="#DA22FF"></stop>
+            <stop offset="100%" stop-color="#9733EE"></stop>
+          </linearGradient>
+        </defs>
+        <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 0, 'transition': 'stroke-dashoffset 5s'}" #progressBar></circle>
+      </svg>
+    </div>
     <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player>
   </div>
 
 </div>
+

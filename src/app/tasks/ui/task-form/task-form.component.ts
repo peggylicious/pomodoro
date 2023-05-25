@@ -21,6 +21,7 @@ export class TaskFormComponent  implements OnInit {
     description: [''],
     status: [''],
     pomodoros: [0],
+    totalCycles: [0],
     isComplete: false
   })
 

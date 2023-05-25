@@ -1,3 +1,9 @@
 <ion-content [fullscreen]="true" class="page-wrapper">
-  <ion-router-outlet style="position: relative; width: 100%; height: 100%; margin-top:56px;display: block;"></ion-router-outlet>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Pomodoro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- <ion-router-outlet style="position: relative; width: 100%; height: 100%; margin-top:56px;display: block;"></ion-router-outlet> -->
+  <router-outlet></router-outlet>
 </ion-content>

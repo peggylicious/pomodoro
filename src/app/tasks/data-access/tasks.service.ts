@@ -18,6 +18,9 @@ export class TasksService {
     console.log('Updating...')
     return this.http.put(`${this.baseUrl}update/${taskId}`, data)
   }
+  deleteAllTasks(){
+    return this.http.delete(`${this.baseUrl}delete/all`)
+  }
   // getPostLocalStorage(){
 
   // }

@@ -67,20 +67,31 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any}, taskIndex?:any){
+  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any}, taskIndex?:any){
     console.log('taskId ' + taskId)
     this.tasks = this.tasks.map((element:any, index:any) => {
     console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
+    data.pomodoros = Math.trunc(data?.totalCycles/4)
+    // data.isComplete = true
       if(element._id === taskIndex) {
 
         element.timeLeft = data?.timeLeft
+        // element.pomodoros = data?.pomodoros
         element.pomodoros = data?.pomodoros
+        element.totalCycles = data?.totalCycles
+        if((data?.totalCycles % 4) === 0){
+          element.isComplete = true
+        }
+        if((data.totalCycles % 4) !== 0){
+          element.isComplete = false
+        }
       }
       return element
     });
     console.log(this.tasks)
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       console.log(res)
+      // if((res?.pomodoros%4 )=== 0)
       this.getTaskById(taskId)
 
     })
@@ -98,5 +109,10 @@ export class TasksStoreService {
   }
   playOnInit(val:boolean){
     return this.playOnInit_.next(val)
+  }
+  deleteAllTasks(){
+    this.tasksService.deleteAllTasks().subscribe(res=>{
+      console.log("All Tasks Deleted ",res)
+    })
   }
 }

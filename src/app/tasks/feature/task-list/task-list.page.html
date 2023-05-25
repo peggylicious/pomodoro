@@ -1,18 +1,20 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>task-list</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!-- <ion-content [fullscreen]="true"> -->
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">task-list</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
   <div>
     <div>
       <ion-button (click)="open()">Add task</ion-button>
+<button (click)="deleteTask()"> Delete</button>
+
     </div>
     <div>
       <!-- <h1>{{ minutes }}: {{ seconds }}</h1> -->
@@ -21,4 +23,4 @@
     </div>
     <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
   </div>
-</ion-content>
+<!-- </ion-content> -->
