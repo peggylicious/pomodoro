@@ -17,7 +17,7 @@ export class TaskContainerPage implements OnInit {
   constructor(private tasksStoreService: TasksStoreService) { }
 
   ngOnInit() {
-    this.tasksStoreService.getAllTasks()
+    // this.tasksStoreService.getAllTasks()
   }
 
 }

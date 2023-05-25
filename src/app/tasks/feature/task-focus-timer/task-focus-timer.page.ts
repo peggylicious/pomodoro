@@ -41,6 +41,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   percentProgress:any;
   diff:any;
   sessions: any;
+  isModalOpen:boolean = false;
+
    constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController) {
     // this.tempDate.transform(new Date(), 'dd MMMM')
     router.events.subscribe(event => {
@@ -53,6 +55,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+    console.log(this.isModalOpen)
     this.route.data.subscribe((res1) => {
       this.route.params.subscribe(res=>{
         this.getTaskById(res['id'])
@@ -68,6 +71,9 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     // this.percentProgress = ((this.selectedTask?.[0]?.totalCycles % 4)/ 4);
     // this.diff = 754 - (754 * this.percentProgress)
     // this.sessions = this.selectedTask?.[0]?.totalCycles % 4
+    this.tasksStoreService.showModal.subscribe(res => {
+      this.isModalOpen = res
+    })
   }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -179,5 +185,11 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   totalPomodoros(i:number){
     // console.log(Math.trunc(i))
     return new Array(Math.trunc(i))
+  }
+
+  setOpen(isOpen: boolean) {
+    this.tasksStoreService.showModal.next(false)
+    // this.isModalOpen = this.tasksStoreService.showModal.getValue();
+    console.log(this.isModalOpen)
   }
 }

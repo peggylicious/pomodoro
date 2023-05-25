@@ -17,6 +17,7 @@ export class TasksStoreService {
   onShowPauseBtn: BehaviorSubject<any> = new BehaviorSubject({});
   onPlayPomodoroOnNav: Subject<boolean> = new Subject();
   playOnInit_: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  showModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
   selectedTask: any;
   selectedIndex: any;
   get tasks() : any {
@@ -69,32 +70,36 @@ export class TasksStoreService {
   }
   updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any}, taskIndex?:any){
     console.log('taskId ' + taskId)
-    this.tasks = this.tasks.map((element:any, index:any) => {
-    console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
-    data.pomodoros = Math.trunc(data?.totalCycles/4)
-    // data.isComplete = true
-      if(element._id === taskIndex) {
-
-        element.timeLeft = data?.timeLeft
-        // element.pomodoros = data?.pomodoros
-        element.pomodoros = data?.pomodoros
-        element.totalCycles = data?.totalCycles
-        if((data?.totalCycles % 4) === 0){
-          element.isComplete = true
-        }
-        if((data.totalCycles % 4) !== 0){
-          element.isComplete = false
-        }
-      }
-      return element
-    });
     console.log(this.tasks)
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       console.log(res)
+    this.updateUI(taskId, data, taskIndex)
       // if((res?.pomodoros%4 )=== 0)
       this.getTaskById(taskId)
 
     })
+  }
+  updateUI(askId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any}, taskIndex?:any){
+    this.tasks = this.tasks.map((element:any, index:any) => {
+      console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
+      data.pomodoros = Math.trunc(data?.totalCycles/4)
+      // data.isComplete = true
+        if(element._id === taskIndex) {
+
+          element.timeLeft = data?.timeLeft
+          // element.pomodoros = data?.pomodoros
+          element.pomodoros = data?.pomodoros
+          element.totalCycles = data?.totalCycles
+          if((data?.totalCycles % 4) === 0){
+            element.isComplete = true
+            this.showModal.next(true)
+          }
+          if((data.totalCycles % 4) !== 0){
+            element.isComplete = false
+          }
+        }
+        return element
+      });
   }
   // showPlayBtn(val:boolean, index: any){
   showPlayBtn(val:boolean){
