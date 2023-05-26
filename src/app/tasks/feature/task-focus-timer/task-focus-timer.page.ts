@@ -7,6 +7,7 @@ import { PlayerComponent } from '../../ui/player/player.component';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { Observable, Subject, filter, map, of, takeUntil, timer } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { CelebrationsComponent } from '../../ui/celebrations/celebrations.component';
 const fadeInOut = trigger('fadeInOut', [
   state('open', style({display: 'none'})),
   state('close', style({opacity: 0})),
@@ -19,7 +20,7 @@ const fadeInOut = trigger('fadeInOut', [
   templateUrl: './task-focus-timer.page.html',
   styleUrls: ['./task-focus-timer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, PlayerComponent],
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, PlayerComponent, CelebrationsComponent],
   animations: [fadeInOut]
 })
 
