@@ -1,7 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{formTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
 <div auth-form-wrapper>
-  <form [formGroup]="authForm">
-    <ion-input title="email" name="email" type="email" formControlName="email"></ion-input>
-    <ion-input title="password" name="password" type="password" formControlName="password"></ion-input>
-    <ion-button (click)="onSubmitAuthForm()">{{buttonTitle}}</ion-button>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmitAuthForm()">
+    <div class="input-wrapper">
+      <ion-input title="email" name="email" type="email" shape="round"
+    [errorText]="emailError" formControlName="email"></ion-input>
+    <ion-icon name="mail" [class.input-filled]="filledEmail" [class.input-not-filled]="!filledEmail"></ion-icon>
+    </div>
+    <div class="input-wrapper">
+      <ion-input title="password" name="password" type="password" shape="round" [errorText]="passwordError" formControlName="password"></ion-input>
+      <ion-icon name="lock-closed" [class.input-filled]="filledPassword" [class.input-not-filled]="!filledPassword"></ion-icon>
+    </div>
+    <!-- <div class="input-wrapper" *ngIf="formTitle === 'login'">
+      <ion-input title="password" name="password" type="password" shape="round" formControlName="password"></ion-input>
+      <ion-icon name="lock-closed" [class.input-filled]="filledPassword" [class.input-not-filled]="!filledPassword"></ion-icon>
+    </div> -->
+    <ion-button class="submit" type="submit" expand="block" [disabled]="authForm.invalid">{{buttonTitle}}</ion-button>
   </form>
 </div>
+
+<div *ngIf="formTitle === 'login'" class="navigation-btns">
+  <p *ngIf="wrongEntry" style="color: red;">Wrong email or password</p>
+  <p>Don't have an account? <button routerLink="/register">Register</button></p>
+</div>
+<div *ngIf="formTitle === 'register'" class="navigation-btns">
+  <p>Already have an account? <button routerLink="/login">Login</button></p>
+
+</div>
+</ion-content>

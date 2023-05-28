@@ -1,15 +1,2 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <app-auth-form [buttonTitle]="'Register'" [formTitle]="formTitle" (onAuth)="registerUser($event)"></app-auth-form>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-auth-form [buttonTitle]="'Register'" (onAuth)="registerUser($event)"></app-auth-form>
-</ion-content>
