@@ -72,7 +72,9 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     // this.percentProgress = ((this.selectedTask?.[0]?.totalCycles % 4)/ 4);
     // this.diff = 754 - (754 * this.percentProgress)
     // this.sessions = this.selectedTask?.[0]?.totalCycles % 4
+    this.tasksStoreService.showModal.next(false)
     this.tasksStoreService.showModal.subscribe(res => {
+      console.log(res)
       this.isModalOpen = res
     })
   }

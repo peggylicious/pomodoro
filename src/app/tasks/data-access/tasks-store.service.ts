@@ -92,10 +92,12 @@ export class TasksStoreService {
           element.totalCycles = data?.totalCycles
           if((data?.totalCycles % 4) === 0){
             element.isComplete = true
-            this.showModal.next(true)
           }
           if((data.totalCycles % 4) !== 0){
             element.isComplete = false
+          }
+          if(element.isComplete){
+            this.showModal.next(true)
           }
         }
         return element
