@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode, ErrorHandler, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // import { AppModule } from './app/app.module';
@@ -12,6 +12,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from'@angular/common/http'
 import { FormGroupDirective } from '@angular/forms';
 import { LoadingInterceptor } from './app/shared/utils/loading.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
+import { CustomErrorHandlerService } from './app/core/utils/custom-error-handler.service';
+import { ServerErrorInterceptor } from './app/core/interceptors/server-error.interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -26,6 +28,8 @@ bootstrapApplication(AppComponent, {
   providers: [
  { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
  { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+ { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true },
+ { provide: ErrorHandler, useClass: CustomErrorHandlerService},
  importProvidersFrom(IonicModule.forRoot({})),
  importProvidersFrom(HttpClientModule),
  importProvidersFrom(FormGroupDirective),

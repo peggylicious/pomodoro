@@ -42,7 +42,7 @@ export class AuthFormComponent  implements OnInit {
     this.iconColor = '#A0A0A0'
   }
   onSubmitAuthForm(){
-    console.log(this.authForm)
+    // console.log(this.authForm)
     this.onAuth.emit(this.authForm.value)
   }
   // onChangeInput(){
@@ -80,7 +80,7 @@ export class AuthFormComponent  implements OnInit {
       if(this.authForm.get('password')?.errors?.['pattern']){
         // return error if password field does not match pattern
         // console.log(this.authForm)
-      console.log(this.authForm.get('password'))
+      // console.log(this.authForm.get('password'))
 
         return "Password must include at least, 1 uppercase letter and 1 special character"
       }
