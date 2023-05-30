@@ -63,7 +63,7 @@ export class TasksStoreService {
   }
   createTask(data:any){
     this.tasksService.createTask(data).subscribe(res=> {
-      this.tasks.push(data)
+      this.tasks.push(res)
       console.log(res)
       this.router.navigate(['tasks','all'])
     })
