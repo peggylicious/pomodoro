@@ -68,34 +68,44 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any}, taskIndex?:any){
-    console.log('taskId ' + taskId)
+  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isComplete:any}, taskIndex?:any){
+    console.log('task ', data)
     console.log(this.tasks)
+    if(data?.singleCycle === 4){
+      data.isComplete = true
+    }
+    // if((data?.totalCycles % 4) !== 0){
+    //   data.isComplete = false
+    // }
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       console.log(res)
-    this.updateUI(taskId, data, taskIndex)
+    this.updateUI(taskId, res, taskIndex)
       // if((res?.pomodoros%4 )=== 0)
       this.getTaskById(taskId)
 
     })
   }
-  updateUI(askId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any}, taskIndex?:any){
+  // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any, singleCycle: any}, taskIndex?:any){
+  updateUI(taskId:any, data:any, taskIndex?:any){
     this.tasks = this.tasks.map((element:any, index:any) => {
       console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
       data.pomodoros = Math.trunc(data?.totalCycles/4)
       // data.isComplete = true
-        if(element._id === taskIndex) {
+        if(element._id === data?._id) {
 
-          element.timeLeft = data?.timeLeft
+          // element.timeLeft = data?.timeLeft
           // element.pomodoros = data?.pomodoros
-          element.pomodoros = data?.pomodoros
-          element.totalCycles = data?.totalCycles
-          if((data?.totalCycles % 4) === 0){
-            element.isComplete = true
-          }
-          if((data.totalCycles % 4) !== 0){
-            element.isComplete = false
-          }
+          // element.totalCycles = data?.totalCycles
+          // element.singleCycle = data?.singleCycle
+          // if(data?.singleCycle === 4){
+          //   console.log('isComplete')
+          //   element.isComplete = true
+          // }
+          element = data
+          console.log("Elem: ", element, ' - ', 'data: ', data)
+          // if((data.totalCycles % 4) !== 0){
+          //   element.isComplete = false
+          // }
           if(element.isComplete){
             this.showModal.next(true)
           }

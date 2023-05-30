@@ -31,6 +31,7 @@ export class TaskComponent  implements OnInit {
 
   ngOnInit() {
     this.tasksStoreService.showPlayBtn(true)
+    console.log(this.task)
     // console.log("index: ", this.index, "selectedIndex: ", this.selectedIndex)
     // this.tasksStoreService.onShowPlayBtn.subscribe(res=> console.log(res))
   }
