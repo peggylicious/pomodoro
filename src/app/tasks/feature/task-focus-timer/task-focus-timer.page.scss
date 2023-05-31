@@ -15,8 +15,8 @@ ion-card-content{
   padding: 0;
 }
 .task-discriptive-img{
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   border-radius: var(--card-radius);
   display: flex;
   justify-content: center;
@@ -102,6 +102,9 @@ circle{
 .progress-content h1{
   margin: 0;
   font-size: 42px;
+}
+.page-instruction{
+  text-align: center;
 }
 // @keyframes progress-animate {
 //   100%{

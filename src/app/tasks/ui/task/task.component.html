@@ -10,9 +10,9 @@
     </div>
     <div class="about-task">
       <h3>{{task?.title}}</h3>
-      <p>{{ task?.description }}</p>
-      <p>{{ task?.pomodoros }}</p>
-      <p>{{ task?.totalCycles }}</p>
+      <p>{{ task?.totalCycles }} seconds</p>
+      <!-- <p>{{ task?.pomodoros }}</p>
+      <p>{{ task?.totalCycles }}</p> -->
     </div>
     <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer',]" [state]="{reload: false}">Play</ion-button> -->
     <ion-button class="play-btn" (click)="playOnInit()"><ion-icon name="play"></ion-icon>

@@ -19,7 +19,7 @@
       </div>
       <div class="about-task">
         <div class="card-section"><h3>{{selectedTask?.[0]?.title}}</h3> <h3>{{selectedTask?.[0]?.singleCycle}}/4</h3></div>
-        <div class="card-section"><p>{{ (selectedTask?.[0]?.totalCycles*20) }} seconds</p><p>{{timePerRound}}seconds</p></div>
+        <div class="card-section"><p>{{ (selectedTask?.[0]?.totalCycles*20) }} seconds</p><p>{{timePerRound}} seconds</p></div>
 
         <!-- <p>{{ selectedTask?.[0]?.description }}</p>
         <p>{{ selectedTask?.[0]?.totalCycles }}</p> -->
@@ -80,6 +80,7 @@
         <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 0, 'transition': 'stroke-dashoffset 5s'}" #progressBar></circle>
       </svg>
     </div>
+    <p class="page-instruction">Stay focused for {{selectedTask?.[0]?.timeLeft}} minutes</p>
     <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player>
   </div>
 
