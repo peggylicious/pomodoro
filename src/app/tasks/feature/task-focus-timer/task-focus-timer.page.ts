@@ -43,7 +43,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   diff:any;
   sessions: any;
   isModalOpen:boolean = false;
-
+  timePerRound:number = 20;
    constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController) {
     // this.tempDate.transform(new Date(), 'dd MMMM')
     router.events.subscribe(event => {

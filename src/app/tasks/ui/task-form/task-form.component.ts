@@ -14,7 +14,14 @@ import { IonicModule } from '@ionic/angular';
 export class TaskFormComponent  implements OnInit {
   @Input() formType:string = '';
   @Output() onSubmitTask:EventEmitter<FormGroup> = new EventEmitter();
-
+  taskCategories = [
+    {title: 'programming', color: '#00A9F1'},
+    {title: 'reading', color: '#FF5726'},
+    {title: 'music', color: '#FFC02D'},
+    {title: 'exercise', color: '#8BC255'},
+    {title: 'meditation', color: '#F54336'},
+    {title: 'others', color: '#607D8A'},
+  ]
   taskForm = this.fb.group({
     created_by: localStorage.getItem('userId'),
     title: [''],
@@ -23,6 +30,7 @@ export class TaskFormComponent  implements OnInit {
     pomodoros: [0],
     totalCycles: [0],
     singleCycle: [0],
+    category: [''],
     isComplete: false
   })
 

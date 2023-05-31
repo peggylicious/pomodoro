@@ -1,8 +1,10 @@
 <form [formGroup]="taskForm" (ngSubmit)="submit()">
-
-  <ion-input id="title" type="text" fill="outline" label="Title:" labelPlacement="stacked"formControlName="title"></ion-input>
-  <ion-input id="description" type="text" fill="outline" label="Description:" labelPlacement="stacked"formControlName="description"></ion-input>
-  <ion-input id="status" type="text" fill="outline" label="Status:" labelPlacement="stacked"formControlName="status"></ion-input>
-  <ion-input id="pomodoros" type="number" fill="outline" label="Pomodoros:" labelPlacement="stacked"formControlName="pomodoros"></ion-input>
+  <ion-select fill="outline" shape="round" label="Task category:" labelPlacement="floating" formControlName="category" >
+    <ion-select-option [value]="category.title" *ngFor="let category of taskCategories">{{ category.title }}</ion-select-option>
+  </ion-select>
+  <ion-input id="title" type="text" fill="outline" label="Title:" labelPlacement="stacked" formControlName="title"></ion-input>
+  <ion-input id="description" type="text" fill="outline" label="Description:" labelPlacement="stacked" formControlName="description"></ion-input>
+  <ion-input id="status" type="text" fill="outline" label="Status:" labelPlacement="stacked" formControlName="status"></ion-input>
+  <ion-input id="pomodoros" type="number" fill="outline" label="Pomodoros:" labelPlacement="stacked" formControlName="pomodoros"></ion-input>
   <ion-button type="submit" color="primary" [disabled]="!taskForm.valid">{{formType}}</ion-button>
 </form>

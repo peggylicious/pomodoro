@@ -1,10 +1,11 @@
 ion-card{
-  padding: 32px 24px;
   --padding-start: 24px;
   --padding-end: 24px;
   --padding-top: 32px;
   --padding-bottom: 32px;
+  border-radius: var(--card-radius);
   box-shadow: var(--card-shadow-light);
+  padding: 32px 24px;
 }
 ion-card-content{
   display: flex;
@@ -17,7 +18,14 @@ ion-card-content{
   width: 80px;
   height: 80px;
   border-radius: var(--card-radius);
-  background: #CDDC4C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background: #CDDC4C;
+}
+.task-discriptive-img ion-icon{
+  font-size: 32px;
+  color: #fff;
 }
 .about-task{
   flex: 1;
@@ -27,10 +35,11 @@ ion-card-content{
   color: var(--black-light-weight);
   margin-top: 8px;
   font-weight: 500;
+  font-size: 14px;
 }
 .about-task h3{
   color: var(--main-black);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
 }
 .play-btn{
@@ -110,4 +119,15 @@ svg{
 }
 .progress-wrapper{
   position: relative;
+}
+
+.programming{background: #00A9F1}
+.reading{background: #FF5726}
+.music{ background: #FFC02D}
+.exercise{background: #8BC255}
+.meditation{background: #F54336}
+.others{background: #607D8A}
+.card-section{
+  display: flex;
+  justify-content: space-between;
 }

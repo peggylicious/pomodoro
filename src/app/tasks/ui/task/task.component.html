@@ -5,7 +5,9 @@
   </ion-card-header> -->
 
   <ion-card-content>
-    <p class="task-discriptive-img"></p>
+    <div class="task-discriptive-img" [ngClass]="task?.category">
+      <ion-icon [src]="'assets/task-categories/'+ task?.category + '.svg'"></ion-icon>
+    </div>
     <div class="about-task">
       <h3>{{task?.title}}</h3>
       <p>{{ task?.description }}</p>
@@ -13,7 +15,8 @@
       <p>{{ task?.totalCycles }}</p>
     </div>
     <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer',]" [state]="{reload: false}">Play</ion-button> -->
-    <ion-button class="play-btn" (click)="playOnInit()">Play</ion-button>
+    <ion-button class="play-btn" (click)="playOnInit()"><ion-icon name="play"></ion-icon>
+    </ion-button>
 
     <!-- <ion-button color="success" *ngIf="((showPlay | async).val && (((showPlay | async).index !== selectedIndex))) || (!(showPlay | async).val && (((showPlay | async).index !== selectedIndex)))" (click)="playPomodoro(task, index)">Play</ion-button>
     <ion-button color="success" *ngIf="(showPlay | async).val && (showPlay | async).index === selectedIndex" (click)="playPomodoro(task, index)">Play</ion-button>

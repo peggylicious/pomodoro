@@ -14,11 +14,15 @@
 <div class="focus-timer-container">
   <ion-card>
     <ion-card-content>
-      <p class="task-discriptive-img"></p>
+      <div class="task-discriptive-img" [ngClass]="selectedTask?.[0]?.category">
+        <ion-icon [src]="'assets/task-categories/'+ selectedTask?.[0]?.category + '.svg'"></ion-icon>
+      </div>
       <div class="about-task">
-        <h3>{{selectedTask?.[0]?.title}}</h3>
-        <p>{{ selectedTask?.[0]?.description }}</p>
-        <p>{{ selectedTask?.[0]?.totalCycles }}</p>
+        <div class="card-section"><h3>{{selectedTask?.[0]?.title}}</h3> <h3>{{selectedTask?.[0]?.singleCycle}}/4</h3></div>
+        <div class="card-section"><p>{{ (selectedTask?.[0]?.totalCycles*20) }} seconds</p><p>{{timePerRound}}seconds</p></div>
+
+        <!-- <p>{{ selectedTask?.[0]?.description }}</p>
+        <p>{{ selectedTask?.[0]?.totalCycles }}</p> -->
         <!-- <p>{{ selectedTask?.[0]?.timeLeft }}</p> -->
         <ion-icon name="compass-outline" *ngFor="let item of totalPomodoros(selectedTask?.[0]?.totalCycles / 4)"></ion-icon>
 
