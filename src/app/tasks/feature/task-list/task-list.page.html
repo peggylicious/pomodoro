@@ -1,10 +1,11 @@
 <div>
   <div>
-    <ion-button (click)="open()">Add task</ion-button>
-    <button (click)="deleteTask()"> Delete</button>
+    <!-- <ion-button (click)="open()">Add task</ion-button>
+    <button (click)="deleteTask()"> Delete</button> -->
   </div>
   <div>
-    <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1>
+    <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1> -->
+    <app-circular-progress></app-circular-progress>
   </div>
   <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
 </div>

@@ -7,13 +7,14 @@ import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { PlayerComponent } from '../../ui/player/player.component';
 import { Observable, Subject, Subscription, interval, map, of, takeUntil, takeWhile, timer } from 'rxjs';
 import { TaskComponent } from '../../ui/task/task.component';
+import { CircularProgressComponent } from 'src/app/shared/feature/circular-progress/circular-progress.component';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.page.html',
   styleUrls: ['./task-list.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, PlayerComponent, TaskComponent]
+  imports: [IonicModule, CommonModule, FormsModule, PlayerComponent, TaskComponent, CircularProgressComponent]
 })
 export class TaskListPage implements OnInit, OnDestroy {
   taskResolved:any = this.tasksStoreService.$tasks

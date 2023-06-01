@@ -1,0 +1,61 @@
+.progress-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.progress-outer, .progress-inner{
+  border-radius: 100%;
+  display: block;
+}
+.progress-outer{
+  margin: 0;
+  width: 260px;
+  height: 260px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 6px 6px 10px -1px rgba(0,0,0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+.progress-inner{
+  margin: 0;
+  width: 220px;
+  height: 220px;
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+  -0.5px -0.5px 0px rgba(255, 255, 255, 1), 0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+circle{
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 20px;
+
+}
+.progress-bar{
+  stroke-dasharray: 754; //2*pie*radius
+  stroke-dashoffset: 120;
+}
+.progress-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.progress-content h1{
+  margin: 0;
+  font-size: 42px;
+}
+.page-instruction{
+  text-align: center;
+  margin: 30px 0;
+}
+svg{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-wrapper{
+  position: relative;
+}
