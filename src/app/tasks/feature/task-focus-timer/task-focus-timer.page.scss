@@ -21,7 +21,6 @@ ion-card-content{
   display: flex;
   justify-content: center;
   align-items: center;
-  // background: #CDDC4C;
 }
 .task-discriptive-img ion-icon{
   font-size: 32px;
@@ -69,14 +68,12 @@ ion-icon{
   height: 260px;
   background-color: #fff;
   padding: 20px;
-  // border: 1px solid red;
   box-shadow: 6px 6px 10px -1px rgba(0,0,0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
 }
 .progress-inner{
   margin: 0;
   width: 220px;
   height: 220px;
-  // box-shadow: 6px 6px 10px -1px rgba(0,0,0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
   box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
   -0.5px -0.5px 0px rgba(255, 255, 255, 1), 0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
   background-color: #fff;
@@ -93,7 +90,6 @@ circle{
 .progress-bar{
   stroke-dasharray: 754; //2*pie*radius
   stroke-dashoffset: 120;
-  // animation: progress-animate 2s linear forwards;
 }
 .progress-content{
   display: flex;
@@ -110,14 +106,6 @@ circle{
   text-align: center;
   margin: 30px 0;
 }
-// @keyframes progress-animate {
-//   100%{
-//     stroke-dashoffset: 0;
-//   }
-//   0%{
-//     stroke-dashoffset: 750;
-//   }
-// }
 svg{
   position: absolute;
   top: 0;

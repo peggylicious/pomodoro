@@ -45,7 +45,6 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   isModalOpen:boolean = false;
   timePerRound:number = 20;
    constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController) {
-    // this.tempDate.transform(new Date(), 'dd MMMM')
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // this.previousUrl = this.currentUrl;
@@ -72,9 +71,6 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     if(this.selectedTask?.[0]?.isComplete){
       this.selectedTask[0].isComplete = false
     }
-    // this.percentProgress = ((this.selectedTask?.[0]?.totalCycles % 4)/ 4);
-    // this.diff = 754 - (754 * this.percentProgress)
-    // this.sessions = this.selectedTask?.[0]?.totalCycles % 4
     this.tasksStoreService.showModal.next(false)
     this.tasksStoreService.showModal.subscribe(res => {
       console.log(res)
@@ -105,9 +101,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     console.log(task)
     this.tasksStoreService.showPlayBtn(false)
     this.selectedTask = this.tasksStoreService?.selectedTask
-    // this.selectedTask = task.task;
     this.selectedIndex = this.selectedTask[0]._id
-    // this.isPlay = true
     if(this.selectedTask[0].timeLeft === 0){
       playTime = 20
     }
@@ -121,24 +115,17 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       // Reset to 0
       this.selectedTask[0].singleCycle = 0
     }
-    // console.log("Play ", this.pauseTime)
     this.timeRemaining$ = timer(0, 1000).pipe( // 5mins = 20, 25mins = 15540
       map(n => {
         console.log(playTime, n)
         if((playTime - n) === -1){
           this.pauseTime = 0;
           this.timeR.next('completed')
-          // if((this.selectedTask[0].totalCycles % 4) === 3){
-          //   this.selectedTask[0].isComplete = true
-          // }
           this.selectedTask[0].timeLeft = 0
           this.selectedTask[0].totalCycles +=1
           this.selectedTask[0].singleCycle +=1
-          // this.sessions +=1
           this.tasksStoreService.updateTasks(this.selectedTask[0]._id, this.selectedTask[0],this.selectedIndex)
           this.tasksStoreService.showPlayBtn(true)
-          // this.percentProgress = ((this.selectedTask?.[0]?.totalCycles % 4)/ 4);
-          // this.diff = 754 - (754 * this.percentProgress)
         }
         this.pauseTime = playTime - n;
         return (playTime - n) * 1000
@@ -179,28 +166,17 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       .addElement(this.progressBar.nativeElement)
       .duration(1500)
       .iterations(3)
-      // .fromTo('opacity', '1', '0')
       .fromTo('stroke-dashoffset', 0, diff);
-
-      // .keyframes([
-      //   {offset: 0, 'stroke-dashoffset': 0},
-      //   {offset: 1, 'stroke-dashoffset': diff}
-      // ])
-      // .duration(1500)
-      // .iterations(3)
-      // .fromTo('opacity', '1', '0');
-    console.log("Should Animate", percentProgress, diff)
-    // Don't forget to start the animation!
-    loadingAnimation.play();
+      console.log("Should Animate", percentProgress, diff)
+      // Don't forget to start the animation!
+      loadingAnimation.play();
   }
   totalPomodoros(i:number){
-    // console.log(Math.trunc(i))
     return new Array(Math.trunc(i))
   }
 
   setOpen(isOpen: boolean) {
     this.tasksStoreService.showModal.next(false)
-    // this.isModalOpen = this.tasksStoreService.showModal.getValue();
     console.log(this.isModalOpen)
   }
 }
