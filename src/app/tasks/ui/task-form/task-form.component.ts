@@ -20,7 +20,9 @@ export class TaskFormComponent  implements OnInit {
     {title: 'music', color: '#FFC02D'},
     {title: 'exercise', color: '#8BC255'},
     {title: 'meditation', color: '#F54336'},
-    {title: 'others', color: '#607D8A'},
+    {title: 'maintenance', color: '#1F222A'},
+    {title: 'relax', color: '#CDDC4C'},
+    {title: 'others', color: '#1F222A'},
   ]
   taskForm = this.fb.group({
     created_by: localStorage.getItem('userId'),
