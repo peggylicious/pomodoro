@@ -18,13 +18,14 @@
         <ion-icon [src]="'assets/task-categories/'+ selectedTask?.[0]?.category + '.svg'"></ion-icon>
       </div>
       <div class="about-task">
-        <div class="card-section"><h3>{{selectedTask?.[0]?.title}}</h3> <h3>{{selectedTask?.[0]?.singleCycle}}/4</h3></div>
-        <div class="card-section"><p>{{ (selectedTask?.[0]?.totalCycles*20) }} seconds</p><p>{{timePerRound}} seconds</p></div>
+        <div class="card-section"><h3 class="task-title">{{selectedTask?.[0]?.title}}</h3> <h3>{{selectedTask?.[0]?.singleCycle}}/4</h3></div>
+        <div class="card-section">
+          <p>{{ (selectedTask?.[0]?.totalCycles*20) }} seconds</p>
+          <p>{{timePerRound}} seconds</p></div>
 
         <!-- <p>{{ selectedTask?.[0]?.description }}</p>
         <p>{{ selectedTask?.[0]?.totalCycles }}</p> -->
         <!-- <p>{{ selectedTask?.[0]?.timeLeft }}</p> -->
-        <ion-icon name="compass-outline" *ngFor="let item of totalPomodoros(selectedTask?.[0]?.totalCycles / 4)"></ion-icon>
 
       </div>
       <!-- <ion-button class="play-btn" [routerLink]="['../'+task?._id + '/task-timer']"><ion-icon name="play" color="#fff"></ion-icon></ion-button> -->
@@ -34,6 +35,10 @@
       <ion-button color="warning" *ngIf="(showPause | async).val && ((showPlay | async).index === selectedIndex)" (click)="pausePomodoro(task, index)">Pause</ion-button> -->
     </ion-card-content>
   </ion-card>
+  <!-- Pomodoro SVG -->
+  <!-- <div>
+    <ion-icon name="compass-outline" *ngFor="let item of totalPomodoros(selectedTask?.[0]?.totalCycles / 4)"></ion-icon>
+  </div> -->
   <div class="time-square">
     <!-- {{tempDate}} -->
     <!-- {{ selectedTask?.[0]?.timeLeft }} -->

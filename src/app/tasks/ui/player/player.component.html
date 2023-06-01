@@ -1,7 +1,6 @@
-<div>
-  <h2>{{ selectedTask?.title }}</h2>
-  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="stop()"><ion-icon name="refresh"></ion-icon></ion-button>
-  <ion-button *ngIf="showPlayBtn$ | async" (click)="play()"><ion-icon name="play" color="#fff"></ion-icon></ion-button>
-  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="pause()"> <ion-icon name="pause"></ion-icon> </ion-button>
-  <ion-button *ngIf="(showPlayBtn$ | async) === false"  (click)="stop()"><ion-icon name="stop"></ion-icon></ion-button>
+<div class="player-wrapper">
+  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="stop()" class="refresh-btn"><ion-icon name="refresh"></ion-icon></ion-button>
+  <ion-button *ngIf="showPlayBtn$ | async" (click)="play()" class="play-btn"><ion-icon name="play" color="#fff"></ion-icon></ion-button>
+  <ion-button *ngIf="(showPlayBtn$ | async) === false" (click)="pause()"  class="pause-btn"> <ion-icon name="pause"></ion-icon> </ion-button>
+  <ion-button *ngIf="(showPlayBtn$ | async) === false"  (click)="stop()"  class="stop-btn"><ion-icon name="stop"></ion-icon></ion-button>
 </div>
