@@ -1,26 +1,10 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>task-list</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-<!-- <ion-content [fullscreen]="true"> -->
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">task-list</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
+<div>
   <div>
-    <div>
-      <ion-button (click)="open()">Add task</ion-button>
-<button (click)="deleteTask()"> Delete</button>
-
-    </div>
-    <div>
-      <!-- <h1>{{ minutes }}: {{ seconds }}</h1> -->
-      <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1>
-      <!-- <app-player [selectedTask]="selectedTask" (onPlayPomodoro)="playPomodoro(pauseTime)" (onPausePomodoro)="pausePomodoro()" (onStopPomodoro)="stopPomodoro()"></app-player> -->
-    </div>
-    <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
+    <ion-button (click)="open()">Add task</ion-button>
+    <button (click)="deleteTask()"> Delete</button>
   </div>
-<!-- </ion-content> -->
+  <div>
+    <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1>
+  </div>
+  <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
+</div>
