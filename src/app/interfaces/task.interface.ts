@@ -11,4 +11,5 @@ export interface Task {
   isCompleteCycle: boolean,
   singleCycle: string,
   category: string,
+  selectedPomodoros: number,
 }

@@ -4,8 +4,9 @@
   </ion-select>
   <ion-input id="title" type="text" fill="outline" label="Title:" labelPlacement="stacked" formControlName="title"></ion-input>
   <ion-input id="description" type="text" fill="outline" label="Description:" labelPlacement="stacked" formControlName="description"></ion-input>
-  <ion-input id="status" type="text" fill="outline" label="Status:" labelPlacement="stacked" formControlName="status"></ion-input>
-  <ion-input id="pomodoros" type="number" fill="outline" label="Pomodoros:" labelPlacement="stacked" formControlName="pomodoros"></ion-input>
+  <ion-input id="selectPomodoros" type="number" fill="outline" label="number of pomodoros to be completed:" labelPlacement="stacked" formControlName="selectedPomodoros"></ion-input>
+  <!-- <ion-input id="status" type="text" fill="outline" label="Status:" labelPlacement="stacked" formControlName="status"></ion-input>
+  <ion-input id="pomodoros" type="number" fill="outline" label="Pomodoros:" labelPlacement="stacked" formControlName="pomodoros"></ion-input> -->
   <ion-item>
     <ion-datetime-button datetime="datetime"></ion-datetime-button>
     <ion-modal [keepContentsMounted]="true">

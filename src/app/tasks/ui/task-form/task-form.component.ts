@@ -31,23 +31,29 @@ export class TaskFormComponent  implements OnInit {
     created_by: localStorage.getItem('userId'),
     title: [''],
     description: [''],
-    date: [this.currentTime],
+    date: [],
     status: [''],
     pomodoros: [0],
     totalCycles: [0],
     singleCycle: [0],
     category: [''],
-    isCompleteCycle: false
+    isCompleteCycle: false,
+    selectedPomodoros: [0],
   })
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.taskForm.value.date = this.currentTime
+    this.changeDate(new Date())
+  }
   submit(){
     this.taskForm.value.date = this.selectedDate
+    console.log(this.taskForm)
     this.onSubmitTask.emit(this.taskForm)
   }
   changeDate(d:any){
+    console.log(this.taskForm)
     console.log(d)
     this.selectedDate = d
   }
