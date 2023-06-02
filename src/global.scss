@@ -29,6 +29,13 @@
   font-family: 'Lexend Deca', sans-serif;
   font-family: 'Urbanist', sans-serif;
 }
+
+.page-wrapper{
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-end: 0;
+  --padding-start: 0;
+}
 // Task list random colors for icons
 .programming{background: #00A9F1}
 .reading{background: #FF5726}

@@ -4,3 +4,7 @@
   --padding-end: 0;
   --padding-start: 0;
 }
+ion-tab-button{
+  --color-selected: var(--main-red);
+  --color-focused: var(--main-red);
+}

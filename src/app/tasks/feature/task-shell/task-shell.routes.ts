@@ -19,6 +19,11 @@ export const taskRoutes: Route[] = [
       loadComponent: () => import('../task-add/task-add.page').then((m) =>m.TaskAddPage),
 
     },
+    // {
+    //   path: '',
+    //   redirectTo: 'tasks/all',
+    //   pathMatch: 'full'
+    // }
    ]
  },
 //  {

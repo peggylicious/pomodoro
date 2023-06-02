@@ -1,3 +1,11 @@
+<!-- <div class="ion-page"> -->
+  <ion-content class="page-wrapper">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title size="large">Pomodoro</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
 <div class="focus-timer-container">
   <ion-button (click)="deleteTask(selectedTask?.[0]?._id)">Delete task</ion-button>
   <ion-card>
@@ -61,8 +69,8 @@
   </div>
 
 </div>
-
-<ion-content class="ion-padding">
+  </ion-content>
+<!-- <ion-content class="ion-padding"> -->
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <ion-header>
@@ -82,4 +90,4 @@
       </ion-content>
     </ng-template>
   </ion-modal>
-</ion-content>
+<!-- </ion-content> -->

@@ -1,3 +1,9 @@
+<ion-content class="page-wrapper">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Pomodoro</ion-title>
+    </ion-toolbar>
+  </ion-header>
 <div>
   <div>
     <!-- <ion-button (click)="open()">Add task</ion-button>
@@ -12,3 +18,4 @@
   <h2>All Tasks ({{(taskResolved | async)?.length}})</h2>
   <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
 </div>
+</ion-content>
