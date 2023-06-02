@@ -1,4 +1,5 @@
 <div class="focus-timer-container">
+  <ion-button (click)="deleteTask(selectedTask?.[0]?._id)">Delete task</ion-button>
   <ion-card>
     <ion-card-content>
       <div class="task-discriptive-img" [ngClass]="selectedTask?.[0]?.category">

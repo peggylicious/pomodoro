@@ -179,4 +179,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     this.tasksStoreService.showModal.next(false)
     console.log(this.isModalOpen)
   }
+
+  deleteTask(id:string){
+    this.tasksStoreService.deleteTask(id)
+  }
 }

@@ -12,7 +12,7 @@ export class TasksStoreService {
   private readonly _tasks = new BehaviorSubject<any>('')
   readonly $tasks: Observable<Task[]> = this._tasks.asObservable()
   // readonly upcomingEvents$ = this.events$.pipe(map(res=> res.filter(event => new Date(event.time).getTime()  > new Date().getTime())))
-  readonly todaysTasks$: Observable<Task[]> = this.$tasks.pipe(map(res=>res.filter((task: Task) => new Date(task.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
+  readonly todaysTasks$: Observable<Task[]> = this.$tasks.pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
   // onShowPlayBtn: BehaviorSubject<any> = new BehaviorSubject({val: true});
   onShowPlayBtn: BehaviorSubject<boolean> = new BehaviorSubject(true);
   onShowPauseBtn: BehaviorSubject<any> = new BehaviorSubject({});
@@ -21,6 +21,7 @@ export class TasksStoreService {
   showModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
   selectedTask: any;
   selectedIndex: any;
+  successfullyDeleted: any;
   get tasks() : any {
     return  this._tasks.getValue()
   }
@@ -72,6 +73,9 @@ export class TasksStoreService {
   updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isCompleteCycle:any}, taskIndex?:any){
     console.log('task ', data)
     console.log(this.tasks)
+    if(this.successfullyDeleted = taskId){ // Do not update after navigation if task has been deleted
+      return // Something weird happening at ngOnDestroy while pausing pomodoro
+    }
     if(data?.singleCycle === 4){
       data.isCompleteCycle = true
     }
@@ -127,6 +131,17 @@ export class TasksStoreService {
   }
   playOnInit(val:boolean){
     return this.playOnInit_.next(val)
+  }
+
+  deleteTask(id: string){
+    this.tasksService.deleteTask(id).subscribe(res=> {
+      this.successfullyDeleted = id
+      console.log("Successfully deleted ", id)
+      console.log(res)
+      this.tasks = this.tasks.filter((task:any) => task._id !== id)
+      console.log(this.tasks)
+      this.router.navigate(['tasks', 'all'])
+    })
   }
   deleteAllTasks(){
     this.tasksService.deleteAllTasks().subscribe(res=>{

@@ -20,6 +20,9 @@ export class TasksService {
     console.log('Updating...')
     return this.http.put<Task>(`${this.baseUrl}update/${taskId}`, data)
   }
+  deleteTask(id: string){
+    return this.http.delete<any>(`${this.baseUrl}/delete/${id}`)
+  }
   deleteAllTasks(){
     return this.http.delete(`${this.baseUrl}delete/all`)
   }
