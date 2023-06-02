@@ -68,8 +68,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     if(this.selectedTask?.[0]?.singleCycle === 4){
       this.selectedTask[0].singleCycle = 0
     }
-    if(this.selectedTask?.[0]?.isComplete){
-      this.selectedTask[0].isComplete = false
+    if(this.selectedTask?.[0]?.isCompleteCycle){
+      this.selectedTask[0].isCompleteCycle = false
     }
     this.tasksStoreService.showModal.next(false)
     this.tasksStoreService.showModal.subscribe(res => {
@@ -108,8 +108,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     if(this.selectedTask[0].timeLeft > 0){
       playTime = this.selectedTask[0].timeLeft
     }
-    if(this.selectedTask?.[0]?.isComplete){
-      this.selectedTask[0].isComplete = false
+    if(this.selectedTask?.[0]?.isCompleteCycle){
+      this.selectedTask[0].isCompleteCycle = false
     }
     if(this.selectedTask?.[0]?.singleCycle === 4){
       // Reset to 0
@@ -137,7 +137,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   pausePomodoro(){
     console.log("Pause,", this.pauseTime)
     this.tasksStoreService.showPlayBtn(true)
-    this.selectedTask[0].isComplete = false
+    this.selectedTask[0].isCompleteCycle = false
     this.timeR.next(this.pauseTime)
     this.selectedTask[0].timeLeft = this.pauseTime
     if(this.pauseTime === -1){

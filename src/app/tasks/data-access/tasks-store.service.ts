@@ -69,14 +69,14 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isComplete:any}, taskIndex?:any){
+  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isCompleteCycle:any}, taskIndex?:any){
     console.log('task ', data)
     console.log(this.tasks)
     if(data?.singleCycle === 4){
-      data.isComplete = true
+      data.isCompleteCycle = true
     }
     // if((data?.totalCycles % 4) !== 0){
-    //   data.isComplete = false
+    //   data.isCompleteCycle = false
     // }
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       console.log(res)
@@ -86,12 +86,12 @@ export class TasksStoreService {
 
     })
   }
-  // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isComplete:any, singleCycle: any}, taskIndex?:any){
+  // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isCompleteCycle:any, singleCycle: any}, taskIndex?:any){
   updateUI(taskId:any, data:any, taskIndex?:any){
     this.tasks = this.tasks.map((element:any, index:any) => {
       console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
       data.pomodoros = Math.trunc(data?.totalCycles/4)
-      // data.isComplete = true
+      // data.isCompleteCycle = true
         if(element._id === data?._id) {
 
           // element.timeLeft = data?.timeLeft
@@ -99,15 +99,15 @@ export class TasksStoreService {
           // element.totalCycles = data?.totalCycles
           // element.singleCycle = data?.singleCycle
           // if(data?.singleCycle === 4){
-          //   console.log('isComplete')
-          //   element.isComplete = true
+          //   console.log('isCompleteCycle')
+          //   element.isCompleteCycle = true
           // }
           element = data
           console.log("Elem: ", element, ' - ', 'data: ', data)
           // if((data.totalCycles % 4) !== 0){
-          //   element.isComplete = false
+          //   element.isCompleteCycle = false
           // }
-          if(element.isComplete){
+          if(element.isCompleteCycle){
             this.showModal.next(true)
           }
         }

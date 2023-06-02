@@ -17,7 +17,7 @@
     <ion-icon name="compass-outline" *ngFor="let item of totalPomodoros(selectedTask?.[0]?.totalCycles / 4)"></ion-icon>
   </div> -->
   <div class="time-square">
-    <div class="progress-wrapper" *ngIf="!selectedTask?.[0]?.isComplete">
+    <div class="progress-wrapper" *ngIf="!selectedTask?.[0]?.isCompleteCycle">
       <div class="progress-outer">
         <div class="progress-inner">
           <div class="progress-content">
@@ -36,7 +36,7 @@
         <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * ((selectedTask?.[0]?.totalCycles % 4)/ 4))}" #progressBar></circle>
       </svg>
     </div>
-    <div class="progress-wrapper" *ngIf="selectedTask?.[0]?.isComplete">
+    <div class="progress-wrapper" *ngIf="selectedTask?.[0]?.isCompleteCycle">
       <div class="progress-outer">
         <div class="progress-inner">
           <div class="progress-content">
