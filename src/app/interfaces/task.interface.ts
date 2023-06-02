@@ -9,7 +9,8 @@ export interface Task {
   totalCycles: number,
   timeLeft: number,
   isCompleteCycle: boolean,
-  singleCycle: string,
+  singleCycle: number,
   category: string,
   selectedPomodoros: number,
+  isCompletePomodoros: boolean
 }

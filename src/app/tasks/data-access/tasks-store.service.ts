@@ -22,11 +22,12 @@ export class TasksStoreService {
   selectedTask: any;
   selectedIndex: any;
   successfullyDeleted: any;
-  get tasks() : any {
+  get tasks() : Task[] {
     return  this._tasks.getValue()
   }
 
-  set tasks(v : any) {
+  set tasks(v : Task[]) {
+    console.log("veee ", v)
     this._tasks.next(v)
   }
 
@@ -70,14 +71,21 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-  updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isCompleteCycle:any}, taskIndex?:any){
+  updateTasks(taskId:any, data: Task, taskIndex?:any){
+  // updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isCompleteCycle:any, selectedPomodoros:any}, taskIndex?:any){
     console.log('task ', data)
     console.log(this.tasks)
-    if(this.successfullyDeleted = taskId){ // Do not update after navigation if task has been deleted
+    if(this.successfullyDeleted === taskId){ // Do not update after navigation if task has been deleted
       return // Something weird happening at ngOnDestroy while pausing pomodoro
     }
     if(data?.singleCycle === 4){
       data.isCompleteCycle = true
+      data.pomodoros += 1
+    }
+    console.log("Selected pomodoros ", data.selectedPomodoros, "pomodoros ", data.pomodoros)
+    if(data?.pomodoros === data?.selectedPomodoros){
+      data.isCompletePomodoros = true
+      console.log(data.isCompletePomodoros)
     }
     // if((data?.totalCycles % 4) !== 0){
     //   data.isCompleteCycle = false

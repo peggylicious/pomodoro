@@ -39,6 +39,7 @@ export class TaskFormComponent  implements OnInit {
     category: [''],
     isCompleteCycle: false,
     selectedPomodoros: [0],
+    isCompletePomodoros: false
   })
 
   constructor(private fb: FormBuilder) { }

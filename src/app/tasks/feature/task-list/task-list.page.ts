@@ -44,7 +44,14 @@ export class TaskListPage implements OnInit, OnDestroy {
   }
   pausePomodoro(){
     this.timeR.next(this.pauseTime)
-    this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime, totalCycles: this.selectedTask.totalCycles, singleCycle: this.selectedTask.singleCycle, pomodoros: this.selectedTask.pomodoros, isCompleteCycle: this.selectedTask.pomodoro})
+    this.selectedTask.timeLeft = this.pauseTime,
+    //  totalCycles: this.selectedTask.totalCycles,
+    //  singleCycle: this.selectedTask.singleCycle,
+    //  pomodoros: this.selectedTask.pomodoros,
+    //  isCompleteCycle: this.selectedTask.pomodoro,
+    //  selectedPomodoros: this.selectedTask.selectedPomodoros
+    this.tasksStoreService.updateTasks(this.selectedTask._id, this.selectedTask)
+    // this.tasksStoreService.updateTasks(this.selectedTask._id, {timeLeft: this.pauseTime, totalCycles: this.selectedTask.totalCycles, singleCycle: this.selectedTask.singleCycle, pomodoros: this.selectedTask.pomodoros, isCompleteCycle: this.selectedTask.pomodoro, selectedPomodoros: this.selectedTask.selectedPomodoros})
   }
   stopPomodoro(){
     console.log("Stop")
