@@ -7,5 +7,8 @@
     <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1> -->
     <app-circular-progress></app-circular-progress>
   </div>
+  <h2>Todays Tasks ({{(todaysTasks$ | async)?.length}})</h2>
+  <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of todaysTasks$ | async; let i = index"></app-task>
+  <h2>All Tasks ({{(taskResolved | async)?.length}})</h2>
   <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
 </div>

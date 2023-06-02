@@ -8,6 +8,7 @@ import { PlayerComponent } from '../../ui/player/player.component';
 import { Observable, Subject, Subscription, interval, map, of, takeUntil, takeWhile, timer } from 'rxjs';
 import { TaskComponent } from '../../ui/task/task.component';
 import { CircularProgressComponent } from 'src/app/shared/feature/circular-progress/circular-progress.component';
+import { Task } from 'src/app/interfaces/task.interface';
 
 @Component({
   selector: 'app-task-list',
@@ -17,7 +18,8 @@ import { CircularProgressComponent } from 'src/app/shared/feature/circular-progr
   imports: [IonicModule, CommonModule, FormsModule, PlayerComponent, TaskComponent, CircularProgressComponent]
 })
 export class TaskListPage implements OnInit, OnDestroy {
-  taskResolved:any = this.tasksStoreService.$tasks
+  taskResolved:Observable<Task[]> = this.tasksStoreService.$tasks
+  todaysTasks$:Observable<Task[]> = this.tasksStoreService.todaysTasks$
   timeRemaining$!:Observable<number>;
   timeR: Subject<any> = new Subject();
   allotedTime: number = 25 * 60 *1000;

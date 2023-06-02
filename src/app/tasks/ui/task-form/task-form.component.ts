@@ -14,6 +14,9 @@ import { IonicModule } from '@ionic/angular';
 export class TaskFormComponent  implements OnInit {
   @Input() formType:string = '';
   @Output() onSubmitTask:EventEmitter<FormGroup> = new EventEmitter();
+
+  selectedDate:any;
+  currentTime: any = new Date();
   taskCategories = [
     {title: 'programming', color: '#00A9F1'},
     {title: 'reading', color: '#FF5726'},
@@ -28,6 +31,7 @@ export class TaskFormComponent  implements OnInit {
     created_by: localStorage.getItem('userId'),
     title: [''],
     description: [''],
+    date: [this.currentTime],
     status: [''],
     pomodoros: [0],
     totalCycles: [0],
@@ -40,6 +44,11 @@ export class TaskFormComponent  implements OnInit {
 
   ngOnInit() {}
   submit(){
+    this.taskForm.value.date = this.selectedDate
     this.onSubmitTask.emit(this.taskForm)
+  }
+  changeDate(d:any){
+    console.log(d)
+    this.selectedDate = d
   }
 }

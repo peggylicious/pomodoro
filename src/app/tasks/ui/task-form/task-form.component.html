@@ -6,5 +6,13 @@
   <ion-input id="description" type="text" fill="outline" label="Description:" labelPlacement="stacked" formControlName="description"></ion-input>
   <ion-input id="status" type="text" fill="outline" label="Status:" labelPlacement="stacked" formControlName="status"></ion-input>
   <ion-input id="pomodoros" type="number" fill="outline" label="Pomodoros:" labelPlacement="stacked" formControlName="pomodoros"></ion-input>
+  <ion-item>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" #datetime presentation="date-time" (ionChange)="changeDate(datetime.value)"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
   <ion-button type="submit" color="primary" [disabled]="!taskForm.valid">{{formType}}</ion-button>
 </form>

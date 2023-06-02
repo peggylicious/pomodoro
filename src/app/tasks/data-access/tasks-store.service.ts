@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, filter, map, pipe } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, filter, map, pipe } from 'rxjs';
 import { TasksService } from './tasks.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Task } from 'src/app/interfaces/task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TasksStoreService {
   // tasks$ = new Subject()
   private readonly _tasks = new BehaviorSubject<any>('')
-  readonly $tasks = this._tasks.asObservable()
+  readonly $tasks: Observable<Task[]> = this._tasks.asObservable()
   // readonly upcomingEvents$ = this.events$.pipe(map(res=> res.filter(event => new Date(event.time).getTime()  > new Date().getTime())))
-
+  readonly todaysTasks$: Observable<Task[]> = this.$tasks.pipe(map(res=>res.filter((task: Task) => new Date(task.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
   // onShowPlayBtn: BehaviorSubject<any> = new BehaviorSubject({val: true});
   onShowPlayBtn: BehaviorSubject<boolean> = new BehaviorSubject(true);
   onShowPauseBtn: BehaviorSubject<any> = new BehaviorSubject({});
