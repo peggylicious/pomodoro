@@ -25,16 +25,18 @@ export class TasksStoreService {
   playOnInit_: BehaviorSubject<boolean> = new BehaviorSubject(false)
   showModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
   selectedTask: any;
+  selectedTask$: Subject<Task[]> = new Subject();
   selectedIndex: any;
   successfullyDeleted: any;
-  get tasks() : Task[] {
-    return  this._tasks.getValue()
-  }
+  tasks: Task[] = [];
+  // get tasks() : Task[] {
+  //   return  this._tasks.getValue()
+  // }
 
-  set tasks(v : Task[]) {
-    console.log("veee ", v)
-    this._tasks.next(v)
-  }
+  // set tasks(v : Task[]) {
+  //   // console.log("veee ", v)
+  //   this._tasks.next(v)
+  // }
 
   constructor(private tasksService: TasksService, private router: Router, private route: ActivatedRoute) { }
   getTasks(){
@@ -45,7 +47,7 @@ export class TasksStoreService {
     .subscribe(tasks => {
       this.tasks = tasks
       this.$tasks.next(tasks)
-      console.log(tasks)
+      // console.log(tasks)
     })
   }
   getTaskById(id:string){
@@ -54,7 +56,9 @@ export class TasksStoreService {
       this.tasksService.getAllTask().subscribe(res=> {
         this.tasks = res
         this.selectedTask = this.tasks.filter((res:any) => id === res._id)
-        console.log(this.selectedTask)
+        // let filteredTask = this.tasks.filter((res:any) => id === res._id)
+        // this.selectedTask$.next(filteredTask)
+        console.log("On refresh ",this.selectedTask)
       })
     }else{
       this.selectedTask = this.tasks.filter((res:any, index:any) => {
@@ -64,7 +68,15 @@ export class TasksStoreService {
           return res
         }
       })
-      console.log(this.selectedTask)
+
+      // this.selectedTask.next(this.tasks.filter((res:any, index:any) => {
+      //   this.selectedIndex = index
+      //   console.log("Selected Index ", id)
+      //   if(id === res._id){
+      //     return res
+      //   }
+      // }))
+      // console.log(this.selectedTask)
     }
   }
   populateTasks():Observable<Task[]>{
@@ -109,7 +121,7 @@ export class TasksStoreService {
   // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isCompleteCycle:any, singleCycle: any}, taskIndex?:any){
   updateUI(taskId:any, data:any, taskIndex?:any){
     this.tasks = this.tasks.map((element:any, index:any) => {
-      console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
+      // console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
       data.pomodoros = Math.trunc(data?.totalCycles/4)
       if(element._id === data?._id) {
         element = data

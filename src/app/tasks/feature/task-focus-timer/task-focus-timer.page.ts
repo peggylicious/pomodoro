@@ -35,6 +35,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   timeRemaining:any = 20;
   pauseTime: number = 20; // Start time
   selectedTask:any;
+  selectedTask$:any = this.tasksStoreService.selectedTask$
   selectedIndex = undefined;
   displayTime:boolean = true;
   tempDate: DatePipe = new DatePipe('en-US')
@@ -58,13 +59,33 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     console.log(this.isModalOpen)
     this.route.data.subscribe((res1) => {
       this.route.params.subscribe(res=>{
-        this.getTaskById(res['id'])
+        console.log("Getting route id, ",res['id'])
+        if(!this.selectedTask){
+          this.getTaskById(res['id'])
+        }
       })
     })
+    this.selectedTask = this.tasksStoreService.selectedTask
+
     console.log("Play pomodoro ",this.tasksStoreService.playOnInit_.getValue())
+
+  }
+  ionViewWillEnter(){
+    console.log("Will enter")
+    this.route.data.subscribe((res1) => {
+      this.route.params.subscribe(res=>{
+        if(!this.selectedTask){
+          this.getTaskById(res['id'])
+        }
+      })
+    })
     if(this.tasksStoreService.playOnInit_.getValue()){
       this.playPomodoro(this.selectedTask?.[0]?.timeLeft, this.selectedTask[0])
     }
+  }
+
+  ionViewDidEnter(){
+    console.log("did enter")
     if(this.selectedTask?.[0]?.singleCycle === 4){
       this.selectedTask[0].singleCycle = 0
     }
@@ -77,6 +98,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       this.isModalOpen = res
     })
   }
+
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
@@ -84,16 +106,17 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
 
   }
   getTaskById(id:string){
+    this.tasksStoreService.getTaskById(id)
     console.log(this.tasksStoreService.getTaskById(id))
     this.selectedTask = this.tasksStoreService?.selectedTask
     console.log("selected task ",this.selectedTask)
-    if(this.selectedTask?.[0]?.timeLeft === 0){
-      this.displayTime = true
-      console.log("isTrue")
-     }else{
-      this.displayTime = false
-      console.log("isFalse")
-     }
+    // if(this.selectedTask?.[0]?.timeLeft === 0){
+    //   this.displayTime = true
+    //   console.log("isTrue")
+    //  }else{
+    //   this.displayTime = false
+    //   console.log("isFalse")
+    //  }
   }
 
   playPomodoro(playTime:number, task?:any){
@@ -134,6 +157,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     );
     // this.timeRemaining$.subscribe(x=> x)
   }
+
   pausePomodoro(){
     console.log("Pause,", this.pauseTime)
     this.tasksStoreService.showPlayBtn(true)
@@ -148,17 +172,14 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     console.log("index: ", this.selectedTask[0].index,)
 
   }
+
   stopPomodoro(){
     console.log("Stop")
     this.timeRemaining$ = of(0)
     this.timeR.next(0)
     this.pauseTime = 20
   }
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.pausePomodoro()
-  }
+
   startLoad() {
     let percentProgress = ((this.selectedTask?.[0]?.totalCycles % 4)/ 4);
     let diff = 754 - (754 * percentProgress)
@@ -182,5 +203,11 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
 
   deleteTask(id:string){
     this.tasksStoreService.deleteTask(id)
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.pausePomodoro()
   }
 }

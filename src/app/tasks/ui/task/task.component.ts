@@ -31,7 +31,7 @@ export class TaskComponent  implements OnInit {
 
   ngOnInit() {
     this.tasksStoreService.showPlayBtn(true)
-    console.log(this.task)
+    // console.log(this.task)
     // console.log("index: ", this.index, "selectedIndex: ", this.selectedIndex)
     // this.tasksStoreService.onShowPlayBtn.subscribe(res=> console.log(res))
   }
@@ -51,6 +51,7 @@ export class TaskComponent  implements OnInit {
   }
   playOnInit(){
     this.tasksStoreService.playOnInit(true)
+    this.tasksStoreService.getTaskById(this.task?._id)
     this.router.navigate(['tasks',this.task?._id, 'task-timer'])
   }
 
