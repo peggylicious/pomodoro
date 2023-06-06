@@ -46,3 +46,12 @@
 .maintenance{background: #1F222A}
 .relax{background: #CDDC4C}
 .others{background: #1F222A}
+
+ion-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: 250px;
+  --min-height: 250px;
+  --border-radius: var(--card-radius);
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}

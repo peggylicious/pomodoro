@@ -45,6 +45,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   sessions: any;
   isModalOpen:boolean = false;
   timePerRound:number = 20;
+
    constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -71,6 +72,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
 
   }
   ionViewWillEnter(){
+    // this.openAlert = true
+
     console.log("Will enter")
     this.route.data.subscribe((res1) => {
       this.route.params.subscribe(res=>{
@@ -196,12 +199,21 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   }
 
   deleteTask(id:string){
-    this.tasksStoreService.deleteTask(id)
+    this.pausePomodoro()
+    this.tasksStoreService.openModal(this.selectedTask)
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.pausePomodoro()
+  }
+
+  ionViewWillLeave(){
+    console.log("Will leave", this.pauseTime > 0, this.tasksStoreService.onShowPlayBtn.getValue())
+
+    if((this.pauseTime > 0) && (this.tasksStoreService.playOnInit_.getValue())){
+      console.log("Show modal")
+    }
   }
 }

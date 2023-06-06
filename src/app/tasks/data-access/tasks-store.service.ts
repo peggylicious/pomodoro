@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable, Subject, combineLatest, concat, filter, ma
 import { TasksService } from './tasks.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/interfaces/task.interface';
+import { ModalController } from '@ionic/angular';
+import { DeleteModalComponent } from 'src/app/shared/feature/delete-modal/delete-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +40,7 @@ export class TasksStoreService {
   //   this._tasks.next(v)
   // }
 
-  constructor(private tasksService: TasksService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private tasksService: TasksService, private router: Router, private route: ActivatedRoute, private modalCtrl: ModalController) { }
 
   getTasks(){
     this.tasksService.getAllTask().subscribe(res=> this.tasks = res)
@@ -102,6 +104,7 @@ export class TasksStoreService {
       console.log(data.isCompletePomodoros)
     }
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
+      this.playOnInit_.next(false)
       console.log(res)
       this.updateUI(taskId, res, taskIndex)
       this.getTaskById(taskId)
@@ -157,4 +160,23 @@ export class TasksStoreService {
       console.log("All Tasks Deleted ",res)
     })
   }
+
+  // openDeleteModal(){
+    async openModal(task: Task[]) {
+      console.log(task)
+      const modal = await this.modalCtrl.create({
+        component: DeleteModalComponent,
+        componentProps: {selectedTask: task}
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+      console.log(data)
+      if (role === 'confirm') {
+        console.log("confirm delete")
+        this.deleteTask(task[0]._id)
+        // this.message = `Hello, ${data}!`;
+      }
+    }
+  // }
 }
