@@ -79,9 +79,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
         }
       })
     })
-    if(this.tasksStoreService.playOnInit_.getValue()){
-      this.playPomodoro(this.selectedTask?.[0]?.timeLeft, this.selectedTask[0])
-    }
+
   }
 
   ionViewDidEnter(){
@@ -97,6 +95,9 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       console.log(res)
       this.isModalOpen = res
     })
+    if(this.tasksStoreService.playOnInit_.getValue()){
+      this.playPomodoro(this.selectedTask?.[0]?.timeLeft, this.selectedTask[0])
+    }
   }
 
   ngAfterViewInit(): void {
@@ -107,16 +108,9 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   }
   getTaskById(id:string){
     this.tasksStoreService.getTaskById(id)
-    console.log(this.tasksStoreService.getTaskById(id))
+    // console.log(this.tasksStoreService.getTaskById(id))
     this.selectedTask = this.tasksStoreService?.selectedTask
     console.log("selected task ",this.selectedTask)
-    // if(this.selectedTask?.[0]?.timeLeft === 0){
-    //   this.displayTime = true
-    //   console.log("isTrue")
-    //  }else{
-    //   this.displayTime = false
-    //   console.log("isFalse")
-    //  }
   }
 
   playPomodoro(playTime:number, task?:any){

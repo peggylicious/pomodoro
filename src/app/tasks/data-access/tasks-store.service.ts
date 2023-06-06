@@ -39,9 +39,11 @@ export class TasksStoreService {
   // }
 
   constructor(private tasksService: TasksService, private router: Router, private route: ActivatedRoute) { }
+
   getTasks(){
     this.tasksService.getAllTask().subscribe(res=> this.tasks = res)
   }
+
   getAllTasks(){
     this.tasksService.getAllTask()
     .subscribe(tasks => {
@@ -50,14 +52,13 @@ export class TasksStoreService {
       // console.log(tasks)
     })
   }
+
   getTaskById(id:string){
     console.log(id)
     if(this.tasks.length === 0){
       this.tasksService.getAllTask().subscribe(res=> {
         this.tasks = res
         this.selectedTask = this.tasks.filter((res:any) => id === res._id)
-        // let filteredTask = this.tasks.filter((res:any) => id === res._id)
-        // this.selectedTask$.next(filteredTask)
         console.log("On refresh ",this.selectedTask)
       })
     }else{
@@ -68,21 +69,14 @@ export class TasksStoreService {
           return res
         }
       })
-
-      // this.selectedTask.next(this.tasks.filter((res:any, index:any) => {
-      //   this.selectedIndex = index
-      //   console.log("Selected Index ", id)
-      //   if(id === res._id){
-      //     return res
-      //   }
-      // }))
-      // console.log(this.selectedTask)
     }
   }
+
   populateTasks():Observable<Task[]>{
     // return this.getAllTasks()
     return this.$tasks
   }
+
   createTask(data:any){
     this.tasksService.createTask(data).subscribe(res=> {
       console.log(res)
@@ -107,21 +101,16 @@ export class TasksStoreService {
       data.isCompletePomodoros = true
       console.log(data.isCompletePomodoros)
     }
-    // if((data?.totalCycles % 4) !== 0){
-    //   data.isCompleteCycle = false
-    // }
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       console.log(res)
-    this.updateUI(taskId, res, taskIndex)
-      // if((res?.pomodoros%4 )=== 0)
+      this.updateUI(taskId, res, taskIndex)
       this.getTaskById(taskId)
-
     })
   }
+
   // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isCompleteCycle:any, singleCycle: any}, taskIndex?:any){
   updateUI(taskId:any, data:any, taskIndex?:any){
     this.tasks = this.tasks.map((element:any, index:any) => {
-      // console.log('taskIndex: ' + taskIndex,  'index: ' + element._id)
       data.pomodoros = Math.trunc(data?.totalCycles/4)
       if(element._id === data?._id) {
         element = data
@@ -134,15 +123,19 @@ export class TasksStoreService {
     });
     this.$tasks.next(this.tasks)
   }
+
   showPlayBtn(val:boolean){
     this.onShowPlayBtn.next(val)
   }
+
   showPauseBtn(val:boolean, index:any){
     this.onShowPauseBtn.next({val, index})
   }
+
   playPomodoro(val:boolean){
     this.onPlayPomodoroOnNav.next(val)
   }
+
   playOnInit(val:boolean){
     return this.playOnInit_.next(val)
   }
@@ -158,6 +151,7 @@ export class TasksStoreService {
       this.router.navigate(['tasks', 'all'])
     })
   }
+
   deleteAllTasks(){
     this.tasksService.deleteAllTasks().subscribe(res=>{
       console.log("All Tasks Deleted ",res)
