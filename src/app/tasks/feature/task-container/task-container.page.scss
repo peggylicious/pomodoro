@@ -8,3 +8,11 @@ ion-tab-button{
   --color-selected: var(--main-red);
   --color-focused: var(--main-red);
 }
+.tab-icon-add{
+  font-size: 54px;
+
+}
+ion-tab-button.tab-btn-add{
+  --color: var(--main-red);
+
+}

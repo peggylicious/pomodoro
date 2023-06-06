@@ -126,3 +126,17 @@ svg{
   display: flex;
   justify-content: space-between;
 }
+.focus-timer-container ion-card{
+  margin-top: 30px;
+}
+.focus-timer-container > ion-button{
+  position: absolute;
+    top: 5px;
+    z-index: 10;
+    right: 0;
+    --background: transparent;
+    --box-shadow: none;
+}
+.focus-timer-container > ion-button ion-icon{
+  color:var(--main-red);
+}
