@@ -1,10 +1,22 @@
 import { Route } from'@angular/router';
+import { TodaysTasksResolver } from '../../utils/todays-task.resolver';
+import { TasksResolver } from '../../utils/tasks.resolver';
 
 export const taskRoutes: Route[] = [
  {
    path:'',
    loadComponent: () => import('../task-container/task-container.page').then((m) =>m.TaskContainerPage),
+  //  resolve: {
+  //   taskxx: TodaysTasksResolver
+  // },
    children: [
+    {
+      path:'home',
+      loadComponent: () => import('../task-home/task-home.page').then((m) =>m.TaskHomePage),
+      resolve: {
+        todaysTasks: TasksResolver
+      },
+     },
     {
       path:'all',
       loadComponent: () => import('../task-list/task-list.page').then((m) =>m.TaskListPage),

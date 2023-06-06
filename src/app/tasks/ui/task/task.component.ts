@@ -51,7 +51,7 @@ export class TaskComponent  implements OnInit {
   }
   playOnInit(){
     this.tasksStoreService.playOnInit(true)
-    this.router.navigate(['tasks',this.task._id, 'task-timer'])
+    this.router.navigate(['tasks',this.task?._id, 'task-timer'])
   }
 
   // If user presses play, display pause button by indext

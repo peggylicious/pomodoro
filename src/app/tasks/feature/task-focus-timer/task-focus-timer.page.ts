@@ -61,7 +61,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
         this.getTaskById(res['id'])
       })
     })
-
+    console.log("Play pomodoro ",this.tasksStoreService.playOnInit_.getValue())
     if(this.tasksStoreService.playOnInit_.getValue()){
       this.playPomodoro(this.selectedTask?.[0]?.timeLeft, this.selectedTask[0])
     }

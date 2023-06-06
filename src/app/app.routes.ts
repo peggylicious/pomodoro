@@ -28,4 +28,8 @@ export const routes: Route[] = [
     path: 'login',
     loadComponent: () => import('./auth/feature/login/login.page').then( m => m.LoginPage)
   },
+  {
+    path: 'task-home',
+    loadComponent: () => import('./tasks/feature/task-home/task-home.page').then( m => m.TaskHomePage)
+  },
 ];
