@@ -5,7 +5,7 @@
       <div class="progress-content">
         <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }}</h1>
         <p>{{((selectedTask?.[0]?.totalCycles % 4))}} of 4 sessions</p> -->
-        <h1>75%</h1>
+        <h1>{{(((todaysTasksComplete$ | async)!.length / (todaysTasks$1 | async)!.length ) * 100)}}%</h1>
         <!-- <p>{{((selectedTask?.[0]?.totalCycles % 4))}} of 4 sessions</p> -->
       </div>
     </div>
@@ -17,7 +17,11 @@
         <stop offset="100%" stop-color="#9733EE"></stop>
       </linearGradient>
     </defs>
-    <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * (1/ 4))}" #progressBar></circle>
+    <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * (( todaysTasksComplete$ | async)!.length  / (todaysTasks$1 | async)!.length   ))}" #progressBar></circle>
     <!-- <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * ((selectedTask?.[0]?.totalCycles % 4)/ 4))}" #progressBar></circle> -->
   </svg>
+</div>
+<div class="progress greeting">
+  <h3>Wow your daily goal is almost done</h3>
+  <p> {{(todaysTasksComplete$ | async)?.length}} of {{(todaysTasks$1 | async)?.length}}  completed</p>
 </div>

@@ -18,7 +18,9 @@ import { TaskComponent } from '../../ui/task/task.component';
 })
 export class TaskHomePage implements OnInit {
   todaysTasks$1:Observable<Task[]> = this.tasksStoreService.todaysTasks$
+  todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.todaysTasksComplete$
   todaysTasks: Task[] = [];
+  period: string = ''
   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService) {}
 
   ngOnInit() {
@@ -30,6 +32,22 @@ export class TaskHomePage implements OnInit {
     // this.tasksStoreService.todaysTasks$.subscribe(res=>{
     //   console.log(res)
     // })
+    this.getTimeOfDay()
   }
 
+  getTimeOfDay(){
+    let today = new Date()
+    let time = today.getHours()
+    console.log(time)
+    if(time < 12){
+      this.period = 'morning';
+      return 'morning'
+    }else if (time < 16){
+      this.period = 'afternoon'
+      return 'afternoon'
+    }else{
+      this.period = 'evening'
+      return 'evening'
+    }
+  }
 }

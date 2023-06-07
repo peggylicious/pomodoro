@@ -20,6 +20,7 @@ export class TasksStoreService {
     return first.concat(second)
   }))
   readonly todaysTasks$: Observable<Task[]> = this.allTasks$.pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
+  readonly todaysTasksComplete$: Observable<Task[]> = this.todaysTasks$.pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
 
   // readonly upcomingEvents$ = this.events$.pipe(map(res=> res.filter(event => new Date(event.time).getTime()  > new Date().getTime())))
   onShowPlayBtn: BehaviorSubject<boolean> = new BehaviorSubject(true);
