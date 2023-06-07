@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/interfaces/task.interface';
 import { ModalController } from '@ionic/angular';
 import { DeleteModalComponent } from 'src/app/shared/feature/delete-modal/delete-modal.component';
+import { CelebrationsComponent } from '../ui/celebrations/celebrations.component';
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +88,7 @@ export class TasksStoreService {
       this.router.navigate(['tasks','all'])
     })
   }
-  updateTasks(taskId:any, data: Task, taskIndex?:any){
+  updateTasks(taskId:any, data: Task, taskIndex?:any, action?: string){
   // updateTasks(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, singleCycle:any, isCompleteCycle:any, selectedPomodoros:any}, taskIndex?:any){
     console.log('task ', data)
     console.log(this.tasks)
@@ -106,20 +107,21 @@ export class TasksStoreService {
     return this.tasksService.updateTasks(taskId, data).subscribe(res=>{
       this.playOnInit_.next(false)
       console.log(res)
-      this.updateUI(taskId, res, taskIndex)
+      this.updateUI(taskId, res, taskIndex, action)
       this.getTaskById(taskId)
     })
   }
 
   // updateUI(taskId:any, data: {timeLeft:any, pomodoros:any, totalCycles:any, isCompleteCycle:any, singleCycle: any}, taskIndex?:any){
-  updateUI(taskId:any, data:any, taskIndex?:any){
+  updateUI(taskId:any, data:any, taskIndex?:any, action?: string){
     this.tasks = this.tasks.map((element:any, index:any) => {
       data.pomodoros = Math.trunc(data?.totalCycles/4)
       if(element._id === data?._id) {
         element = data
         // console.log("Elem: ", element, ' - ', 'data: ', data)
-        if(element.isCompleteCycle){
+        if(element.isCompleteCycle && action !== 'delete'){
           this.showModal.next(true)
+          this.openCelebrationsModal(this.selectedTask)
         }
       }
       return element
@@ -166,7 +168,8 @@ export class TasksStoreService {
       console.log(task)
       const modal = await this.modalCtrl.create({
         component: DeleteModalComponent,
-        componentProps: {selectedTask: task}
+        componentProps: {selectedTask: task},
+        id: 'delete'
       });
       modal.present();
 
@@ -179,4 +182,22 @@ export class TasksStoreService {
       }
     }
   // }
+
+  async openCelebrationsModal(task: Task[]) {
+    console.log(task)
+    const modal = await this.modalCtrl.create({
+      component: CelebrationsComponent,
+      componentProps: {selectedTask: task},
+      id: 'celebrations'
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    console.log(data)
+    if (role === 'confirm') {
+      console.log("confirm delete")
+      // this.deleteTask(task[0]._id)
+      // this.message = `Hello, ${data}!`;
+    }
+  }
 }

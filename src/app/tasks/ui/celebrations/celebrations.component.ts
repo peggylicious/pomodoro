@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-celebrations',
@@ -10,9 +10,20 @@ import { IonicModule } from '@ionic/angular';
   imports: [CommonModule, IonicModule]
 })
 export class CelebrationsComponent  implements OnInit {
+  @Input() selectedTask: any;
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Open celebrations modal.")
+
+  }
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel', 'celebrations');
+  }
+
+  confirm() {
+    return this.modalCtrl.dismiss("hi", 'confirm');
+  }
 
 }

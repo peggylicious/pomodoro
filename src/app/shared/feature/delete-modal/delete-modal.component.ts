@@ -19,7 +19,7 @@ export class DeleteModalComponent  implements OnInit {
   }
 
   cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+    return this.modalCtrl.dismiss(null, 'cancel', 'delete');
   }
 
   confirm() {

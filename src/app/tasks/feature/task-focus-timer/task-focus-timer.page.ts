@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, LOCALE_ID, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AnimationController, IonicModule } from '@ionic/angular';
+import { AnimationController, IonModal, IonicModule, ModalController } from '@ionic/angular';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { PlayerComponent } from '../../ui/player/player.component';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
@@ -45,8 +45,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   sessions: any;
   isModalOpen:boolean = false;
   timePerRound:number = 20;
-
-   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController) {
+  @ViewChild('celebrations') celebrations!: IonModal;
+   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController, private modalCtrl: ModalController) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // this.previousUrl = this.currentUrl;
@@ -150,7 +150,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     // this.timeRemaining$.subscribe(x=> x)
   }
 
-  pausePomodoro(){
+  pausePomodoro(action?: string){
     this.tasksStoreService.showPlayBtn(true)
     this.selectedTask[0].isCompleteCycle = false
     this.timeR.next(this.pauseTime)
@@ -158,7 +158,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     if(this.pauseTime === -1){
       this.selectedTask[0].timeLeft = 20
     }
-    this.tasksStoreService.updateTasks(this.selectedTask[0]._id, this.selectedTask[0],   this.selectedIndex)
+    this.tasksStoreService.updateTasks(this.selectedTask[0]._id, this.selectedTask[0],   this.selectedIndex, action)
     // this.tasksStoreService.updateTasks(this.selectedTask[0]._id, {timeLeft: this.pauseTime},   this.selectedIndex)
   }
 
@@ -187,11 +187,14 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
 
   setOpen(isOpen: boolean) {
     this.tasksStoreService.showModal.next(false)
+    // this.openModal(this.selectedTask)
     console.log(this.isModalOpen)
   }
-
+  confirm(){
+    this.celebrations.dismiss()
+  }
   deleteTask(id:string){
-    this.pausePomodoro()
+    this.pausePomodoro('delete')
     this.tasksStoreService.openModal(this.selectedTask)
   }
 
@@ -208,4 +211,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       console.log("Show modal")
     }
   }
+
+
+
 }
