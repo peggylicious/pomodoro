@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
         // console.log(res)
         localStorage.setItem('access_token', res.token)
         localStorage.setItem('userId', res.loggedUserId)
-        this.router.navigate(['tasks', 'all'])
+        this.router.navigate(['tasks', 'home'])
       },
       error: err=>{
         this.wrongEntry = true
