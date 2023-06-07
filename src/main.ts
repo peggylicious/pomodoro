@@ -19,7 +19,7 @@ if (environment.production) {
   enableProdMode();
 }
 export function tokenGetter(){
-  console.log("Token getter ", localStorage.getItem('access_token'))
+  // console.log("Token getter ", localStorage.getItem('access_token'))
  return localStorage.getItem('access_token')
 }
 // platformBrowserDynamic().bootstrapModule(AppModule)

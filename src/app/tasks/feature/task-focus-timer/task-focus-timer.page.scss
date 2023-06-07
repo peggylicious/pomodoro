@@ -83,7 +83,8 @@ ion-icon{
 }
 circle{
   fill: none;
-  stroke: url(#GradientColor);
+  // stroke: url(#GradientColor);
+  stroke: var(--main-red);
   stroke-width: 20px;
 
 }

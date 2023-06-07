@@ -56,7 +56,7 @@ export class TasksStoreService {
   }
 
   getTaskById(id:string){
-    console.log(id)
+    // console.log(id)
     if(this.tasks.length === 0){
       this.tasksService.getAllTask().subscribe(res=> {
         this.tasks = res
@@ -66,7 +66,7 @@ export class TasksStoreService {
     }else{
       this.selectedTask = this.tasks.filter((res:any, index:any) => {
         this.selectedIndex = index
-        console.log("Selected Index ", id)
+        // console.log("Selected Index ", id)
         if(id === res._id){
           return res
         }
@@ -117,7 +117,7 @@ export class TasksStoreService {
       data.pomodoros = Math.trunc(data?.totalCycles/4)
       if(element._id === data?._id) {
         element = data
-        console.log("Elem: ", element, ' - ', 'data: ', data)
+        // console.log("Elem: ", element, ' - ', 'data: ', data)
         if(element.isCompleteCycle){
           this.showModal.next(true)
         }
