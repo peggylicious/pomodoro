@@ -13,8 +13,8 @@ import { TasksStoreService } from 'src/app/tasks/data-access/tasks-store.service
   imports: [CommonModule, IonicModule]
 })
 export class CircularProgressComponent  implements OnInit {
-  todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.todaysTasksComplete$
-  todaysTasks$1:Observable<Task[]> = this.tasksStoreService.todaysTasks$
+  todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.getTodaysCompletedTasks()
+  todaysTasks$1:Observable<Task[]> = this.tasksStoreService.getTodaysTasks()
 
   constructor(private tasksStoreService: TasksStoreService) { }
 

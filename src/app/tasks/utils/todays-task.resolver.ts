@@ -16,7 +16,7 @@ export class TodaysTasksResolver implements Resolve<boolean> {
     // Cache storage should be used here with a condiction. Checking if cache is populated with tassssssssks
     console.log("From Child resolver")
     // return this.tasksStoreService.$tasks.subscribe(res=>res)
-    // return this.tasksStoreService.getAllTasks()
+    // return this.tasksStoreService.getAllTasksFromRemote()
 
   }
 }

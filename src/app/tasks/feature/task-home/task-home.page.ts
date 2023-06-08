@@ -17,8 +17,8 @@ import { TaskComponent } from '../../ui/task/task.component';
   imports: [IonicModule, CommonModule, FormsModule, TaskComponent, CircularProgressComponent]
 })
 export class TaskHomePage implements OnInit {
-  todaysTasks$1:Observable<Task[]> = this.tasksStoreService.todaysTasks$
-  todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.todaysTasksComplete$
+  todaysTasks$1:Observable<Task[]> = this.tasksStoreService.getTodaysTasks()
+  todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.getTodaysCompletedTasks()
   todaysTasks: Task[] = [];
   period: string = ''
   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService) {}

@@ -28,7 +28,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   @ViewChild('progressBar', { read: ElementRef }) progressBar!: ElementRef<any>;
 
 
-  taskResolved:any = this.tasksStoreService.$tasks
+  // taskResolved:any = this.tasksStoreService.$tasks
   timeRemaining$!:Observable<number>;
   timeR: Subject<any> = new Subject();
   // allotedTime: number = 25 * 60 *1000;

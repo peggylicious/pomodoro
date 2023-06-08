@@ -14,13 +14,13 @@ export class TasksStoreService {
   // tasks$ = new Subject()
   private readonly _tasks = new BehaviorSubject<any>('')
   // readonly $tasks: Observable<Task[]> = this._tasks.asObservable();
-  readonly $tasks = new BehaviorSubject<Task[]>([]);
-  readonly newTask$ = new BehaviorSubject<Task[]>([])
-  readonly allTasks$: Observable<Task[]> = this.$tasks.pipe(withLatestFrom(this.newTask$), map(([first, second]) => {
-    return first.concat(second)
-  }))
-  readonly todaysTasks$: Observable<Task[]> = this.allTasks$.pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
-  readonly todaysTasksComplete$: Observable<Task[]> = this.todaysTasks$.pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
+  private $tasks = new BehaviorSubject<Task[]>([]);
+  private newTask$ = new BehaviorSubject<Task[]>([])
+  // private allTasks$: Observable<Task[]> = this.$tasks.pipe(withLatestFrom(this.newTask$), map(([first, second]) => {
+  //   return first.concat(second)
+  // }))
+  // // private todaysTasks$: Observable<Task[]> = this.allTasks$.pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
+  // private todaysTasksComplete$: Observable<Task[]> = this.todaysTasks$.pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
 
   // readonly upcomingEvents$ = this.events$.pipe(map(res=> res.filter(event => new Date(event.time).getTime()  > new Date().getTime())))
   onShowPlayBtn: BehaviorSubject<boolean> = new BehaviorSubject(true);
@@ -48,7 +48,7 @@ export class TasksStoreService {
     this.tasksService.getAllTask().subscribe(res=> this.tasks = res)
   }
 
-  getAllTasks(){
+  getAllTasksFromRemote(){
     this.tasksService.getAllTask()
     .subscribe(tasks => {
       this.tasks = tasks
@@ -56,7 +56,17 @@ export class TasksStoreService {
       // console.log(tasks)
     })
   }
-
+  getAllTasks(): Observable<Task[]>{
+    return this.$tasks.pipe(withLatestFrom(this.newTask$), map(([first, second]) => {
+      return first.concat(second)
+    }))
+  }
+  getTodaysTasks(): Observable<Task[]>{
+    return this.getAllTasks().pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
+  }
+  getTodaysCompletedTasks():  Observable<Task[]>{
+    return this.getTodaysTasks().pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
+  }
   getTaskById(id:string){
     // console.log(id)
     if(this.tasks.length === 0){
@@ -77,7 +87,7 @@ export class TasksStoreService {
   }
 
   populateTasks():Observable<Task[]>{
-    // return this.getAllTasks()
+    // return this.getAllTasksFromRemote()
     return this.$tasks
   }
 

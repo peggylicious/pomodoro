@@ -18,8 +18,8 @@ import { Task } from 'src/app/interfaces/task.interface';
   imports: [IonicModule, CommonModule, FormsModule, PlayerComponent, TaskComponent, CircularProgressComponent]
 })
 export class TaskListPage implements OnInit, OnDestroy {
-  taskResolved:Observable<Task[]> = this.tasksStoreService.allTasks$;
-  todaysTasks$:Observable<Task[]> = this.tasksStoreService.todaysTasks$
+  taskResolved:Observable<Task[]> = this.tasksStoreService.getAllTasks();
+  todaysTasks$:Observable<Task[]> = this.tasksStoreService.getTodaysTasks()
   timeRemaining$!:Observable<number>;
   timeR: Subject<any> = new Subject();
   allotedTime: number = 25 * 60 *1000;
