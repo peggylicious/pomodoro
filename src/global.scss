@@ -55,3 +55,10 @@ ion-modal {
   --border-radius: var(--card-radius);
   // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
+ion-content, ion-card, ion-header, ion-tabs{
+  background: var(--main-bg-white);
+  --background: var(--main-bg-white);
+}
+ion-input{
+  --background: red;
+}
