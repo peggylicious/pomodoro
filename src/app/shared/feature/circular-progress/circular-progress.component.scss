@@ -1,6 +1,31 @@
+ion-card{
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --padding-top: 32px;
+  --padding-bottom: 32px;
+  --border-radius: var(--card-radius);
+  border-radius: var(--card-radius);
+  padding: 32px 24px;
+  box-shadow: var(--card-shadow-light);
+  margin: 0;
+}
+ion-card-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px;
+  padding: 0;
+}
+
+.progress-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .progress-wrapper{
   display: flex;
   justify-content: center;
+  margin-right: 20px;
 }
 .progress-outer, .progress-inner{
   border-radius: 100%;
@@ -8,16 +33,16 @@
 }
 .progress-outer{
   margin: 0;
-  width: 260px;
-  height: 260px;
+  width: 80px;
+  height: 80px;
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 6px 6px 10px -1px rgba(0,0,0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
 }
 .progress-inner{
   margin: 0;
-  width: 220px;
-  height: 220px;
+  width: 60px;
+  height: 60px;
   box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
   -0.5px -0.5px 0px rgba(255, 255, 255, 1), 0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
   background-color: #fff;
@@ -28,23 +53,25 @@
 circle{
   fill: none;
   stroke: url(#GradientColor);
-  stroke-width: 20px;
+  stroke-width: 10px;
 
 }
 .progress-bar{
-  stroke-dasharray: 754; //2*pie*radius
-  stroke-dashoffset: 120;
+  stroke-dasharray: 220; //2*pie*radius
+  stroke-dashoffset: 0;
 }
 .progress-content{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 30px;
+  // margin-top: 30px;
 }
 .progress-content h1{
   margin: 0;
-  font-size: 42px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--main-black);
 }
 .page-instruction{
   text-align: center;
@@ -58,4 +85,13 @@ svg{
 }
 .progress-wrapper{
   position: relative;
+}
+ion-card-content .progress-greeting h3{
+  font-size: 20px;
+  color: var(--main-black);
+  font-weight: 600;
+}
+ion-card-content .progress-greeting p{
+  font-size: 16px;
+  color: var(--black-light-weight);
 }
