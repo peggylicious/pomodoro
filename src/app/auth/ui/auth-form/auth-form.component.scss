@@ -21,6 +21,7 @@ ion-input{
   font-size: 16px;
   font-weight: 700;
   --highlight-color-invalid: var(--main-red);
+  color: var(--main-black)
 }
 .input-wrapper{
   position: relative;

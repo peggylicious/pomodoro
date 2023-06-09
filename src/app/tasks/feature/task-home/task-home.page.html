@@ -1,6 +1,6 @@
 
 
-<ion-content>
+<ion-content class="page-wrapper">
   <ion-header>
     <ion-toolbar>
       <ion-title size="large">Pomodoro</ion-title>
@@ -11,15 +11,15 @@
       <ion-title size="large">task-home</ion-title>
     </ion-toolbar>
   </ion-header> -->
-  <div>
+  <div class="page-content">
     <div class="greeting">
-      <h1>Good {{ period }} {{'Christiana'}}</h1>
+      <h1>{{ period }}, {{'Christiana'}} <span>👋</span></h1>
     </div>
     <div>
       <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1> -->
       <app-circular-progress></app-circular-progress>
     </div>
-    <h2>Todays Tasks ({{(todaysTasks$1 | async)?.length}})</h2>
+    <h3>Todays Tasks ({{(todaysTasks$1 | async)?.length}})</h3>
     <app-task [task]="task" [index]="i" *ngFor="let task of todaysTasks$1 | async; let i = index"></app-task>
 
   </div>
