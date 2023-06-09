@@ -33,7 +33,7 @@ export const taskRoutes: Route[] = [
     },
     // {
     //   path: '',
-    //   redirectTo: 'tasks/all',
+    //   redirectTo: 'tasks/home',
     //   pathMatch: 'full'
     // }
    ]

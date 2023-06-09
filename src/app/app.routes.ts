@@ -6,10 +6,11 @@ export const routes: Route[] = [
  {
    path:'home',
    loadComponent: () => import('./home/home.page').then((m) =>m.HomePage),
+  //  canActivate: [AuthGuard],
  },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tasks/home',
     pathMatch: 'full',
   },
   {
