@@ -19,7 +19,7 @@
       <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1> -->
       <app-circular-progress></app-circular-progress>
     </div>
-    <h3>Todays Tasks ({{(todaysTasks$1 | async)?.length}})</h3>
+    <h3 class="task-period">Todays Tasks ({{(todaysTasks$1 | async)?.length}})</h3>
     <app-task [task]="task" [index]="i" *ngFor="let task of todaysTasks$1 | async; let i = index"></app-task>
 
   </div>

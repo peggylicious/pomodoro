@@ -4,6 +4,10 @@
   --padding-end: 0;
   --padding-start: 0;
 }
+ion-tab-bar{
+  --background: var(--main-bg-white);
+  --border: 0;
+}
 ion-tab-button{
   --color-selected: var(--main-red);
   --color-focused: var(--main-red);

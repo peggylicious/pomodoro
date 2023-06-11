@@ -5,9 +5,10 @@ ion-card{
   --padding-bottom: 32px;
   --border-radius: var(--card-radius);
   border-radius: var(--card-radius);
-  padding: 32px 24px;
+  padding: 12px 24px;
   box-shadow: var(--card-shadow-light);
   margin: 0;
+  margin-bottom: 12px;
 }
 ion-card-content{
   display: flex;
@@ -17,8 +18,8 @@ ion-card-content{
   padding: 0;
 }
 .task-discriptive-img{
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--card-radius);
   display: flex;
   justify-content: center;
@@ -40,7 +41,7 @@ ion-card-content{
 }
 .about-task h3{
   color: var(--main-black);
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
 }
 .play-btn{
