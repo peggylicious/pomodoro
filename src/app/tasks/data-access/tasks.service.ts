@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TasksService {
-  baseUrl: string = "http://localhost:3000/task/"
+  // baseUrl: string = "http://localhost:3000/task/"
+  // baseUrl = 'http://192.168.0.162:3000/task/'
+  baseUrl = 'https://pomodoro-dev.onrender.com/task/'
+
   constructor( private http: HttpClient) { }
 
   getAllTask(): Observable<Task[]>{

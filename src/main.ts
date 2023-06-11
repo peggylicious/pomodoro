@@ -36,7 +36,7 @@ bootstrapApplication(AppComponent, {
  importProvidersFrom(JwtModule.forRoot({
   config: {
     tokenGetter: tokenGetter,
-    allowedDomains: ["localhost:3000", "localhost:8100"],
+    allowedDomains: ["localhost:3000", "localhost:8100", "pomodoro-dev.onrender.com"],
     disallowedRoutes: ["http://example.com/examplebadroute/"],
   },
 })),
