@@ -37,14 +37,14 @@
           </div>
         </div>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="260px" height="260px">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
         <defs>
           <linearGradient id="GradientColor">
             <stop offset="0%" stop-color="#DA22FF"></stop>
             <stop offset="100%" stop-color="#9733EE"></stop>
           </linearGradient>
         </defs>
-        <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 754 - (754 * ((selectedTask?.[0]?.totalCycles % 4)/ 4))}" #progressBar></circle>
+        <circle class="progress-bar" cx="100" cy="100" r="90" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 566 - (566 * ((selectedTask?.[0]?.totalCycles % 4)/4))}" #progressBar></circle>
       </svg>
     </div>
     <div class="progress-wrapper" *ngIf="selectedTask?.[0]?.isCompleteCycle">
@@ -56,14 +56,14 @@
           </div>
         </div>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="260px" height="260px">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
         <defs>
           <linearGradient id="GradientColor">
             <stop offset="0%" stop-color="#DA22FF"></stop>
             <stop offset="100%" stop-color="#9733EE"></stop>
           </linearGradient>
         </defs>
-        <circle class="progress-bar" cx="130" cy="130" r="120" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 0, 'transition': 'stroke-dashoffset 5s'}" #progressBar></circle>
+        <circle class="progress-bar" cx="100" cy="100" r="90" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 0, 'transition': 'stroke-dashoffset 5s'}" #progressBar></circle>
       </svg>
     </div>
     <p class="page-instruction">Stay focused for {{selectedTask?.[0]?.timeLeft}} minutes</p>

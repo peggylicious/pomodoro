@@ -47,7 +47,15 @@ export class TasksStoreService {
   getTasks(){
     this.tasksService.getAllTask().subscribe(res=> this.tasks = res)
   }
-
+  getTimeOffset(){
+    let today:any = new Date()
+    let timeOset = today.getTimezoneOffset() * 60 * 1000
+    let localTime:any = today-timeOset
+    localTime = new Date(localTime)
+    let isoTime = localTime.toISOString()
+    // console.log(isoTime)
+    return isoTime
+  }
   getAllTasksFromRemote(){
     this.tasksService.getAllTask()
     .subscribe(tasks => {
@@ -62,7 +70,7 @@ export class TasksStoreService {
     }))
   }
   getTodaysTasks(): Observable<Task[]>{
-    return this.getAllTasks().pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  new Date().toISOString().split('T')[0])))
+    return this.getAllTasks().pipe(map(res=>res.filter((task: Task) => new Date(task?.date).toISOString().split('T')[0] ===  this.getTimeOffset().split('T')[0])))
   }
   getTodaysCompletedTasks():  Observable<Task[]>{
     return this.getTodaysTasks().pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
@@ -70,16 +78,20 @@ export class TasksStoreService {
   getTaskById(id:string){
     // console.log(id)
     if(this.tasks.length === 0){
-      this.tasksService.getAllTask().subscribe(res=> {
+      return this.tasksService.getAllTask().subscribe(res=> {
         this.tasks = res
         this.selectedTask = this.tasks.filter((res:any) => id === res._id)
         console.log("On refresh ",this.selectedTask)
+        // this.selectedTask$.next(res)
+      return this.selectedTask
+
       })
     }else{
-      this.selectedTask = this.tasks.filter((res:any, index:any) => {
+      return this.selectedTask = this.tasks.filter((res:any, index:any) => {
         this.selectedIndex = index
         // console.log("Selected Index ", id)
         if(id === res._id){
+          // this.selectedTask$.next(res)
           return res
         }
       })

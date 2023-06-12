@@ -64,16 +64,16 @@ ion-icon{
 }
 .progress-outer{
   margin: 0;
-  width: 260px;
-  height: 260px;
+  width: 200px;
+  height: 200px;
   background-color: #fff;
   padding: 20px;
   box-shadow: 6px 6px 10px -1px rgba(0,0,0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
 }
 .progress-inner{
   margin: 0;
-  width: 220px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
   -0.5px -0.5px 0px rgba(255, 255, 255, 1), 0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
   background-color: #fff;
@@ -89,8 +89,8 @@ circle{
 
 }
 .progress-bar{
-  stroke-dasharray: 754; //2*pie*radius
-  stroke-dashoffset: 120;
+  stroke-dasharray: 566; //2*pie*radius
+  stroke-dashoffset: 90;
 }
 .progress-content{
   display: flex;

@@ -4,12 +4,12 @@
       <ion-title size="large">Pomodoro</ion-title>
     </ion-toolbar>
   </ion-header>
-<div>
-  <div>
-    <!-- <ion-button (click)="open()">Add task</ion-button>
-    <button (click)="deleteTask()"> Delete</button> -->
+  <div class="page-content">
+    <div>
+      <!-- <ion-button (click)="open()">Add task</ion-button>
+      <button (click)="deleteTask()"> Delete</button> -->
+    </div>
+    <h3 class="task-period">All Tasks ({{(taskResolved | async)?.length}})</h3>
+    <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
   </div>
-  <h3 class="task-period">All Tasks ({{(taskResolved | async)?.length}})</h3>
-  <app-task [task]="task" [index]="i" (onPlay)="playPomodoro(pauseTime, $event)" (onPause)="pausePomodoro()" *ngFor="let task of taskResolved | async; let i = index"></app-task>
-</div>
 </ion-content>
