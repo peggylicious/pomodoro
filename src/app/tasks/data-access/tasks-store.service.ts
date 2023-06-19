@@ -29,7 +29,7 @@ export class TasksStoreService {
   playOnInit_: BehaviorSubject<boolean> = new BehaviorSubject(false)
   showModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
   selectedTask: any;
-  selectedTask$: Subject<Task[]> = new Subject();
+  selectedTask$ = new BehaviorSubject<Task[]>([])
   selectedIndex: any;
   successfullyDeleted: any;
   tasks: Task[] = [];
@@ -56,13 +56,17 @@ export class TasksStoreService {
     // console.log(isoTime)
     return isoTime
   }
-  getAllTasksFromRemote(){
-    this.tasksService.getAllTask()
-    .subscribe(tasks => {
+  getAllTasksFromRemote(): Observable<Task[]>{
+    return this.tasksService.getAllTask().pipe(map(tasks => {
       this.tasks = tasks
       this.$tasks.next(tasks)
-      // console.log(tasks)
-    })
+      return tasks
+    }))
+    // .subscribe(tasks => {
+    //   this.tasks = tasks
+    //   this.$tasks.next(tasks)
+    //   // console.log(tasks)
+    // })
   }
   getAllTasks(): Observable<Task[]>{
     return this.$tasks.pipe(withLatestFrom(this.newTask$), map(([first, second]) => {
@@ -74,6 +78,14 @@ export class TasksStoreService {
   }
   getTodaysCompletedTasks():  Observable<Task[]>{
     return this.getTodaysTasks().pipe(map(res=>res.filter((task: Task) => task.isCompletePomodoros)))
+  }
+  getSelectedTaskbyId(id: string){
+    console.log("outside map")
+
+   return  this.getAllTasks().pipe(map(res => {
+    console.log("in map")
+      return res.filter(task => task._id === id)
+    }))
   }
   getTaskById(id:string){
     // console.log(id)

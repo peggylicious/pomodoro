@@ -8,6 +8,7 @@ import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { Observable, Subject, filter, map, of, takeUntil, timer } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CelebrationsComponent } from '../../ui/celebrations/celebrations.component';
+import { Task } from 'src/app/interfaces/task.interface';
 const fadeInOut = trigger('fadeInOut', [
   state('open', style({display: 'none'})),
   state('close', style({opacity: 0})),
@@ -35,7 +36,8 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   timeRemaining:any = 20;
   pauseTime: number = 20; // Start time
   selectedTask:any;
-  selectedTask$:any = this.tasksStoreService.selectedTask$
+  // selectedTask$:any = this.tasksStoreService.selectedTask$
+  selectedTask$: Observable<Task[] | null> = of([])
   selectedIndex = undefined;
   displayTime:boolean = true;
   tempDate: DatePipe = new DatePipe('en-US')
@@ -45,6 +47,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   sessions: any;
   isModalOpen:boolean = false;
   timePerRound:number = 20;
+  taskId:string = '';
   @ViewChild('celebrations') celebrations!: IonModal;
    constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController, private modalCtrl: ModalController) {
     router.events.subscribe(event => {
@@ -62,11 +65,13 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       this.route.params.subscribe(res=>{
         // console.log("Getting route id, ",res['id'])
         if(!this.selectedTask){
-          this.getTaskById(res['id'])
+          this.taskId = res['id']
+          // this.getTaskById(res['id'])
         }
       })
     })
-    this.selectedTask = this.tasksStoreService.selectedTask
+    // this.selectedTask = this.tasksStoreService.selectedTask
+    this.selectedTask$ = this.tasksStoreService.getSelectedTaskbyId(this.taskId)
   }
 
   ionViewWillEnter(){
