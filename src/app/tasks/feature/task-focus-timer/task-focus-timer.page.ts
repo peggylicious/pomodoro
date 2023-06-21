@@ -49,21 +49,11 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   timePerRound:number = 20;
   taskId:string = '';
   @ViewChild('celebrations') celebrations!: IonModal;
-   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController, private modalCtrl: ModalController) {
-    router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // this.previousUrl = this.currentUrl;
-        // this.currentUrl = event.url;
-        console.log("Navigation ended")
-      };
-    });
-   }
+   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService, @Inject(LOCALE_ID) private locale: string, private animationCtrl: AnimationController, private modalCtrl: ModalController) {}
 
   ngOnInit() {
-    // console.log(this.isModalOpen)
     this.route.data.subscribe((res1) => {
       this.route.params.subscribe(res=>{
-        // console.log("Getting route id, ",res['id'])
         if(!this.selectedTask){
           this.taskId = res['id']
           // this.getTaskById(res['id'])
@@ -75,7 +65,6 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter(){
-    // this.openAlert = true
     console.log("Will enter")
     this.route.data.subscribe((res1) => {
       this.route.params.subscribe(res=>{
@@ -104,12 +93,7 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     }
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    // this.startLoad()
 
-  }
   getTaskById(id:string){
     this.tasksStoreService.getTaskById(id)
     this.selectedTask = this.tasksStoreService?.selectedTask
@@ -137,7 +121,6 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
     }
     this.timeRemaining$ = timer(0, 1000).pipe( // 5mins = 20, 25mins = 15540
       map(n => {
-        // console.log(playTime, n)
         if((playTime - n) === -1){
           this.pauseTime = 0;
           this.timeR.next('completed')
@@ -152,7 +135,6 @@ export class TaskFocusTimerPage implements OnInit, OnDestroy {
       }),
       takeUntil(this.timeR),
     );
-    // this.timeRemaining$.subscribe(x=> x)
   }
 
   pausePomodoro(action?: string){
