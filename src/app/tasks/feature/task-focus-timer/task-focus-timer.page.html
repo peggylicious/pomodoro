@@ -18,7 +18,7 @@
       <div class="about-task">
         <div class="card-section"><h3 class="task-title">{{selectedTask?.[0]?.title}}</h3> <h3>{{selectedTask?.[0]?.singleCycle}}/4</h3></div>
         <div class="card-section">
-          <p>{{ ((selectedTask[0].totalCycles || 0 )*20) }} seconds</p>
+          <p>{{ ((selectedTask[0] ? selectedTask[0].totalCycles *20 : 0 )) }} seconds</p>
           <p>{{timePerRound}} seconds</p></div>
       </div>
     </ion-card-content>
@@ -33,7 +33,7 @@
         <div class="progress-inner">
           <div class="progress-content">
             <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }}</h1>
-            <p>{{(((selectedTask[0] .totalCycles || 0) % 4))}} of 4 sessions</p>
+            <p>{{(((selectedTask[0] ? selectedTask[0] .totalCycles : 0) % 4))}} of 4 sessions</p>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
             <stop offset="100%" stop-color="#9733EE"></stop>
           </linearGradient>
         </defs>
-        <circle class="progress-bar" cx="100" cy="100" r="90" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 566 - (566 * (((selectedTask[0].totalCycles || 0) % 4)/4))}" #progressBar></circle>
+        <circle class="progress-bar" cx="100" cy="100" r="90" stroke-linecap="round" [ngStyle]="{'stroke-dashoffset': 566 - (566 * (((selectedTask[0] ? selectedTask[0].totalCycles : 0) % 4)/4))}" #progressBar></circle>
       </svg>
     </div>
     <div class="progress-wrapper" *ngIf="selectedTask?.[0]?.isCompleteCycle">
