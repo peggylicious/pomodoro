@@ -27,7 +27,16 @@
         </svg>
       </div>
       <div class="progress-greeting">
-        <h3>Wow your daily goal is almost done</h3>
+        <div *ngIf="(todaysTasks$1 | async) as task">
+          <div *ngIf="(todaysTasksComplete$ | async) as today" class="progress-greeting">
+            <h3 *ngIf="(today.length / task.length) * 100 === 0">You have not completed any task for today</h3>
+            <h3 *ngIf="(((today.length / task.length) * 100) > 0) && (((today.length / task.length) * 100) < 50)">Wow your daily has started well</h3>
+            <h3 *ngIf="(((today.length / task.length) * 100) > 50) && (((today.length / task.length) * 100) < 90)">Wow your daily goal is almost done</h3>
+            <h3 *ngIf="((today.length / task.length) * 100) > 90">you have completed your daily goals</h3>
+          </div>
+          <!-- <h3 class="task-period">Todays Tasks ({{task?.length}})</h3> -->
+        </div>
+        <!-- <h3>Wow your daily goal is almost done</h3> -->
         <p> {{(todaysTasksComplete$ | async)?.length}} of {{(todaysTasks$1 | async)?.length}}  completed</p>
       </div>
     </div>
