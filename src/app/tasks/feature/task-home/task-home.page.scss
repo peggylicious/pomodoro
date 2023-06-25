@@ -9,3 +9,47 @@
 .page-content{
   padding: 20px;
 }
+.home-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.home-nav a{
+  text-decoration: none;
+  color: var(--main-red);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.task-period{
+  margin: 0;
+}
+.no-task-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.no-task-btn-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.no-task-btn, .no-task-btn span{
+  color: var(--main-red);
+  --color: var(--main-red);
+  --background: transparent;
+  --box-shadow: none;
+}
+.no-task-btn{
+  height: 100px;
+}
+.no-task-btn span{
+  display: block;
+  margin-top: 5px;
+}
+.no-task-icon{
+  color: var(--main-red);
+  font-size: 52px;
+}

@@ -13,6 +13,7 @@ import { IonicModule } from '@ionic/angular';
 })
 export class TaskFormComponent  implements OnInit {
   @Input() formType:string = '';
+  @Input() formTitle:string = '';
   @Output() onSubmitTask:EventEmitter<FormGroup> = new EventEmitter();
 
   selectedDate:any;

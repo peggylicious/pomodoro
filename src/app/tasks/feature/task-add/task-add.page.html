@@ -1,4 +1,8 @@
-<div>
-  <h1>Add Task</h1>
-  <app-task-form [formType]="formType" (onSubmitTask)="submitTasks($event)"></app-task-form>
-</div>
+<ion-content class="page-wrapper">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{formTitle}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <app-task-form [formType]="formType" [formTitle]="formTitle" (onSubmitTask)="submitTasks($event)"></app-task-form>
+</ion-content>

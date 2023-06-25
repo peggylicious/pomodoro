@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TasksStoreService } from '../../data-access/tasks-store.service';
 import { CircularProgressComponent } from 'src/app/shared/feature/circular-progress/circular-progress.component';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { TaskComponent } from '../../ui/task/task.component';
   templateUrl: './task-home.page.html',
   styleUrls: ['./task-home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, TaskComponent, CircularProgressComponent]
+  imports: [IonicModule, CommonModule, FormsModule, TaskComponent, CircularProgressComponent, RouterModule]
 })
 export class TaskHomePage implements OnInit {
   todaysTasks$1:Observable<Task[]> = this.tasksStoreService.getTodaysTasks()

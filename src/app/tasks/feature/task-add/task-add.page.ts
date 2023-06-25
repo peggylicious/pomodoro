@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TaskAddPage implements OnInit {
   formType: string = 'Create Task';
-
+  formTitle: string = 'Add Task'
   constructor( private fb: FormBuilder, private tasksStoreService: TasksStoreService, private route: ActivatedRoute) { }
 
   ngOnInit() {

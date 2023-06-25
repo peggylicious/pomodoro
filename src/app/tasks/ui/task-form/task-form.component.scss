@@ -1,0 +1,31 @@
+ion-header ion-title{
+  text-align: center;
+  // font-weight: 700;
+}
+.task-form-container{
+  padding: 50px 20px;
+}
+.pomo-form-control{
+  margin-bottom: 12px;
+}
+.pomo-form-control > label{
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+ion-input, ion-select, ion-item.date{
+  --border-color: transparent !important;
+  --border-radius: 8px;
+  --background: #fafafa;
+}
+ion-select{
+  max-width: 100% !important;
+}
+.submit-task-btn{
+  --border-color: transparent !important;
+  --border-radius: var(--btn-radius);
+  // --background: #fafafa;
+  --width: 100%;
+  width: 100%;
+}

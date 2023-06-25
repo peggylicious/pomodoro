@@ -19,8 +19,27 @@
       <!-- <h1>{{ (timeRemaining$ | async) | date: 'mm:ss' }} </h1> -->
       <app-circular-progress></app-circular-progress>
     </div>
-    <h3 class="task-period">Todays Tasks ({{(todaysTasks$1 | async)?.length}})</h3>
-    <app-task [task]="task" [index]="i" *ngFor="let task of todaysTasks$1 | async; let i = index"></app-task>
+    <div *ngIf="todaysTasks$1 | async as todaysTask">
+      <div class="home-nav">
+        <h3 class="task-period">Todays Tasks ({{todaysTask?.length}})</h3>
+        <a routerLink="../all">See all</a>
+      </div>
+      <app-task [task]="task" [index]="i" *ngFor="let task of todaysTask; let i = index"></app-task>
+      <div *ngIf="todaysTask?.length === 0" class="no-task-wrapper">
+        <!-- <ion-button class="no-task-btn" routerLink="../add">
+          <div class="no-task-btn-wrapper">
+            <ion-icon name="add" class="no-task-icon"></ion-icon>
+            <span>New Task</span>
+          </div>
+        </ion-button> -->
+        <ion-button class="no-task-btn" routerLink="../add">
+          <div class="no-task-btn-wrapper">
+            <ion-icon name="add" class="no-task-icon"></ion-icon>
+            <span>New Task</span>
+          </div>
+        </ion-button>
+      </div>
+    </div>
 
   </div>
 </ion-content>
