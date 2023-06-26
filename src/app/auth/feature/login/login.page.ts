@@ -22,8 +22,9 @@ export class LoginPage implements OnInit {
   loginUser(event:any){
     this.authService.loginUser(event).subscribe({
       next: res=>{
-        // console.log(res)
+        console.log(res)
         localStorage.setItem('access_token', res.token)
+        localStorage.setItem('username', res.userName)
         localStorage.setItem('userId', res.loggedUserId)
         this.router.navigate(['tasks', 'home'])
       },

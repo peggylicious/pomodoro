@@ -21,6 +21,7 @@ export class TaskHomePage implements OnInit {
   todaysTasksComplete$:Observable<Task[]> = this.tasksStoreService.getTodaysCompletedTasks()
   todaysTasks: Task[] = [];
   period: string = ''
+  username: string|null = localStorage.getItem('username')
   constructor(private router: Router, private route: ActivatedRoute, private tasksStoreService: TasksStoreService) {}
 
   ngOnInit() {

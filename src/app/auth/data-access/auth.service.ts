@@ -8,6 +8,7 @@ import { UserSuccess } from 'src/app/interfaces/user.interface.';
 })
 export class AuthService {
   // baseUrl = 'http://192.168.0.162:3000/'
+  // baseUrl: string = "http://localhost:3000/"
   baseUrl = 'https://pomodoro-dev.onrender.com/'
   constructor(private http: HttpClient) { }
 

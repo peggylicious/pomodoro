@@ -7,4 +7,5 @@ export interface UserSuccess{
   loggedUserId: string,
   message: string
   token: string
+  userName: string
 }

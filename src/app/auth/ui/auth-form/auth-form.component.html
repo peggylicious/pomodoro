@@ -15,6 +15,16 @@
 
 <div auth-form-wrapper>
   <form [formGroup]="authForm" (ngSubmit)="onSubmitAuthForm()">
+    <div class="input-wrapper" *ngIf="formTitle === 'register'">
+      <ion-input title="First Name" name="First Name" type="text" shape="round"
+    formControlName="firstName" class="input-filled" [errorText]="firstNameError"></ion-input>
+    <ion-icon name="person" [class.input-filled]="filledFirstName" [class.input-not-filled]="!filledFirstName"></ion-icon>
+    </div>
+    <div class="input-wrapper" *ngIf="formTitle === 'register'">
+      <ion-input title="Last Name" name="Last Name" type="text" shape="round"
+    formControlName="lastName" class="input-filled" [errorText]="lastNameError"></ion-input>
+    <ion-icon name="person" [class.input-filled]="filledLastName" [class.input-not-filled]="!filledLastName"></ion-icon>
+    </div>
     <div class="input-wrapper">
       <ion-input title="email" name="email" type="email" shape="round"
     [errorText]="emailError" formControlName="email"></ion-input>

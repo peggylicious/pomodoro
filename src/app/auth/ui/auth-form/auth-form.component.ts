@@ -22,6 +22,8 @@ export class AuthFormComponent  implements OnInit {
   emailPattern: string = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$';
   passwordPattern: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{0,}$';
   authForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
     email: ['',  {validators: [Validators.required, Validators.email], updateOn: 'blur'}],
     // email: ['',  {validators: [Validators.required, Validators.email,Validators.pattern(this.emailPattern)]}],
     password: ['', ],
@@ -36,6 +38,8 @@ export class AuthFormComponent  implements OnInit {
   iconColor: string = '#A0A0A0';
   filledEmail: boolean = false;
   filledPassword: boolean = false;
+  filledFirstName: boolean = false;
+  filledLastName: boolean = false;
   constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit() {
@@ -53,6 +57,22 @@ export class AuthFormComponent  implements OnInit {
   //     this.filledEmail = false
   //   }
   // }
+  get firstNameError() {
+    if(this.authForm.value['firstName']?.length){
+      this.filledFirstName = true
+    }else{
+      this.filledFirstName = false
+    }
+    return
+  }
+  get lastNameError() {
+    if(this.authForm.value['lastName']?.length){
+      this.filledLastName = true
+    }else{
+      this.filledLastName = false
+    }
+    return
+  }
   get emailError() {
     if(this.authForm.value['email']?.length){
       this.filledEmail = true
